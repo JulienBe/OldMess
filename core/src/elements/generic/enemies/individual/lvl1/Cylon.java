@@ -29,8 +29,8 @@ public class Cylon extends Enemy {
 	protected static final float INIT_NEXT_SHOT = 2.6f;
 	private int index = 0;
 
-	public void init() {
-		Positionner.UP_WIDE.set(this);
+	@Override
+	public void added(float x, float y) {
 		if (pos.x + DIMENSIONS.halfWidth < CSG.halfWidth)
 			dir.set(0.26f * getEnemyStats().getSpeed(), -0.83f * getEnemyStats().getSpeed());
 		else
@@ -38,6 +38,7 @@ public class Cylon extends Enemy {
 		nextShot = 2.6f;
 		angle = dir.angle() + 90;
 		index = 0;
+    super.added(x, y);
 	}
 	
 	@Override

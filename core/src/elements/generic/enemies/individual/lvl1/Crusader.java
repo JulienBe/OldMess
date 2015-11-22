@@ -25,13 +25,14 @@ public class Crusader extends Enemy {
 	protected int shotNumber = 3;
 	private boolean goodShape = true;
 
-	public void init() {
-		Positionner.UP_WIDE.set(this);
+	@Override
+	public void added(float x, float y) {
 		nextShot = INIT_NEXT_SHOT;
 		shootingAngle = 0;
 		goodShape = true;
 		dir.x = 0;
 		dir.y = -getEnemyStats().getSpeed();
+    super.added(x, y);
 	}
 	
 	@Override

@@ -28,4 +28,8 @@ public class Insect4 extends Insect {
 	}
 
 	@Override	public void free() {				POOL.free(this);												}
+	@Override
+	public int getXp() {
+		return super.getXp() * 3;
+	}
 }

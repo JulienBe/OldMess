@@ -24,5 +24,9 @@ public class Laser3 extends Laser {
 	
 	@Override	public void free() {					POOL.free(this);							}
 	@Override	protected float getRotateTime() {		return 16.2f;									}
+	@Override
+	public int getXp() {
+		return super.getXp() * 2;
+	}
 	
 }

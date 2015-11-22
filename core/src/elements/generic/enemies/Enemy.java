@@ -24,7 +24,7 @@ import elements.generic.components.EnemyStats;
 import elements.generic.weapons.Weapon;
 import elements.generic.weapons.enemies.EnemyWeapon;
 import elements.generic.weapons.player.PlayerWeapon;
-import elements.particular.Player;
+import elements.particular.players.Player;
 import elements.particular.bonuses.Bonus;
 import elements.particular.other.WaveEffect;
 import elements.particular.particles.Particles;
@@ -42,8 +42,11 @@ public abstract class Enemy extends Element implements Poolable {
   public float nextShot = 1;
   protected int hp;
 
-  protected Enemy() {
-    this.hp = getMaxHp();
+  public void added(float x, float y) {
+    pos.x = x;
+    pos.y = y;
+    reset();
+    LIST.add(this);
   }
 
   protected int getMaxHp() {
@@ -237,10 +240,6 @@ public abstract class Enemy extends Element implements Poolable {
     }
   }
 
-  public void init() {
-    LIST.add(this);
-  }
-
   public int getShotNumber() {
     return 0;
   }
@@ -339,4 +338,11 @@ public abstract class Enemy extends Element implements Poolable {
 
   protected abstract void free();
 
+  public String toString() {
+    return getClass() + "{" +
+            "dead=" + dead +
+            ", nextShot=" + nextShot +
+            ", hp=" + hp +
+            '}';
+  }
 }

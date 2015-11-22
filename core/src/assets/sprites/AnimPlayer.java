@@ -26,8 +26,8 @@ public class AnimPlayer {
 	}
 
 	public static TextureRegion getTexture() {
-		if (EndlessMode.triggerStop)
-			Particles.addGhost(state);
+//		if (EndlessMode.triggerStop)
+//			Particles.addGhost(state);
 		return TEXTURES[state];
 	}
 

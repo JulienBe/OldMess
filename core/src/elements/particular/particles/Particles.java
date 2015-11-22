@@ -3,7 +3,6 @@ package elements.particular.particles;
 import jeu.CSG;
 import jeu.Stats;
 import jeu.mode.EndlessMode;
-import assets.AssetMan;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
@@ -12,20 +11,17 @@ import com.badlogic.gdx.utils.Array;
 
 import elements.generic.enemies.Enemy;
 import elements.generic.weapons.enemies.EnemyWeapon;
-import elements.generic.weapons.player.ArmeAdd;
 import elements.generic.weapons.player.Fireball;
 import elements.generic.weapons.player.PinkWeapon;
 import elements.generic.weapons.player.PlayerWeapon;
 import elements.generic.weapons.player.SunWeapon;
 import elements.generic.weapons.player.TWeapon;
-import elements.particular.Player;
+import elements.particular.players.Player;
 import elements.particular.bonuses.Bomb;
 import elements.particular.particles.individual.Ghost;
 import elements.particular.particles.individual.PrecalculatedParticles;
 import elements.particular.particles.individual.SparklesColorOverTimeWide;
 import elements.particular.particles.individual.TimeParticle;
-import elements.particular.particles.individual.background.Dust;
-import elements.particular.particles.individual.background.Star;
 import elements.particular.particles.individual.explosions.ColorOverTime;
 import elements.particular.particles.individual.explosions.DebrisExplosion;
 import elements.particular.particles.individual.explosions.Explosion;
@@ -36,7 +32,6 @@ import elements.particular.particles.individual.smoke.Smoke;
 import elements.particular.particles.individual.trhuster.ThrusterParticle;
 import elements.particular.particles.individual.weapon.BlueSweepParticle;
 import elements.particular.particles.individual.weapon.FireballParticle;
-import elements.particular.particles.individual.weapon.GreenAddParticle;
 import elements.particular.particles.individual.weapon.PinkParticle;
 import elements.particular.particles.individual.weapon.SpaceInvaderParticle;
 import elements.particular.particles.individual.weapon.SunParticle;
@@ -46,9 +41,6 @@ public class Particles {
 	 	
 	public static final int MAX_THRUSTER = 600, MAX_BACKGROUND = 400, MAX_DUST = 5;
 	public static int nbFlammes = 0;
-	
-	private static final Array<Dust> DUST = new Array<Dust>(false, MAX_DUST);
-	private static final Array<Star> STAR = new Array<Star>(false, 300);
 	
 	public static final Array<Explosion> EXPLOSIONS = new Array<Explosion>();
 	public static final Array<ColorOverTime> EXPLOSION_COLOR_OVER_TIME = new Array<ColorOverTime>();
@@ -60,7 +52,6 @@ public class Particles {
 	public static final Array<SparklesColorOverTime> COLOR_OVER_TIME = new Array<SparklesColorOverTime>();
 	public static final Array<SparklesColorOverTimeWide> COLOR_OVER_TIME_FOREGROUND = new Array<SparklesColorOverTimeWide>();
 	
-	private static final Array<GreenAddParticle> ADD = new Array<GreenAddParticle>();
 	private static final Array<FireballParticle> FIREBALL = new Array<FireballParticle>();
 	private static final Array<TWeaponParticles> T_WEAPON = new Array<TWeaponParticles>();
 	private static final Array<ThrusterParticle> THRUSTER = new Array<ThrusterParticle>(false, MAX_THRUSTER);
@@ -76,10 +67,6 @@ public class Particles {
 	private static float alphaBg = 1, mv = 0;
 	private static final Rectangle PLANET = new Rectangle();
 	
-	public static void initBackground() {
-		Star.initBackground(STAR);
-	}
-	
 	/**
 	 * Display the background and add a star if required
 	 * @param batch
@@ -88,12 +75,6 @@ public class Particles {
 		if (alphaBg > .5f)		mv -= 0.00001f;
 		else					mv += 0.00001f;
 		alphaBg += mv;
-		batch.setColor(1, 1, 1, Math.abs(alphaBg) / 2);
-		batch.draw(AssetMan.background, -CSG.widthDiv10 *2, -CSG.heightDiv10, CSG.screenWidth + CSG.widthDiv10*3, CSG.height + CSG.heightDiv10);
-		batch.setColor(1, 1, 1, (1-Math.abs(alphaBg)) / 2);
-		batch.draw(AssetMan.background, -CSG.widthDiv10 *2, -CSG.heightDiv10, CSG.screenWidth + CSG.widthDiv10*3, CSG.height + CSG.heightDiv10);
-		batch.setColor(CSG.gm.palette().white);
-		Star.act(batch, STAR);
 		SparklesColorOverTime.act(COLOR_OVER_TIME, batch);
 		Explosion.act(EXPLOSIONS, batch);
 		ColorOverTime.act(EXPLOSION_COLOR_OVER_TIME, batch);
@@ -104,14 +85,12 @@ public class Particles {
 		PinkParticle.act(PINK_WEAPON, batch);
 		SpaceInvaderParticle.act(SPACE_INVADER, batch);
 		TWeaponParticles.act(T_WEAPON, batch);
-		GreenAddParticle.act(ADD, batch);
 		BlueSweepParticle.act(BLUE_SWEEP_WEAPON, batch);
 		FireballParticle.act(FIREBALL, batch);
 		SunParticle.act(SUN_WEAPON, batch);
 		Ghost.act(GHOSTS, batch);
 		Smoke.act(SMOKE, batch);
 		MovingSmoke.act(MOVING_SMOKE, batch);
-		Dust.act(batch, DUST);
 		DebrisExplosion.act(WHITE_SPARKLES_NOT_MOVING, batch);
 		TimeParticle.act(TIME, batch);
 	}
@@ -130,12 +109,12 @@ public class Particles {
 			return;
 		if (yShip-1 < Player.POS.y) {
 			for (int i = 0; i < 3; i++)
-				elements.particular.particles.Smoke.add(Player.xCenter - Player.HALF_WIDTH * 0.3f, Player.POS.y, Player.HALF_WIDTH);
+				elements.particular.particles.Smoke.add(Player.xCenter - v.halfWidth * 0.3f, Player.POS.y, v.halfWidth);
 //				THRUSTER.add(ThrusterParticle.POOL.obtain().init(v));
 
 			if (yShip+1 < Player.POS.y)
 				for (int i = 0; i < EndlessMode.fps / 10; i++)
-					elements.particular.particles.Smoke.add(Player.xCenter - Player.HALF_WIDTH * 0.3f, Player.POS.y, Player.HALF_WIDTH);
+					elements.particular.particles.Smoke.add(Player.xCenter - v.halfWidth * 0.3f, Player.POS.y, v.halfWidth);
 //					THRUSTER.add(ThrusterParticle.POOL.obtain().init(v));
 		}
 		yShip = Player.POS.y;
@@ -150,7 +129,6 @@ public class Particles {
 		// planet
 		planetOffset = CSG.height + (CSG.height * CSG.R.nextFloat());
 		
-		GreenAddParticle.clear(ADD);
 		Explosion.clear(EXPLOSIONS);
 		Explosion.clear(EXPLOSIONS_IMPACT);
 		DebrisExplosion.clear(WHITE_SPARKLES_NOT_MOVING);
@@ -171,7 +149,6 @@ public class Particles {
 		ColorOverTime.clear(EXPLOSION_COLOR_OVER_TIME);
 		elements.particular.particles.Smoke.clear();
 		nbFlammes = 0;
-		Dust.next = 0;
 	}
 	
 	public static void explosion(Enemy e) {
@@ -198,10 +175,6 @@ public class Particles {
 		TWeaponParticles.add(T_WEAPON, a);
 	}
 
-	public static void ajoutAdd(ArmeAdd a) {
-		GreenAddParticle.add(a, ADD);
-	}
-
 	public static void ajoutArmeDeBase(Fireball a) {
 		FireballParticle.add(a, FIREBALL);
 	}
@@ -218,9 +191,9 @@ public class Particles {
 		SUN_WEAPON.add(p);
 	}
 
-	public static void addGhost(int etat) {
+	public static void addGhost(int etat, Player player) {
 		final Ghost g = Ghost.POOL.obtain();
-		g.init(etat);
+		g.init(etat, player);
 		GHOSTS.add(g);
 	}
 	

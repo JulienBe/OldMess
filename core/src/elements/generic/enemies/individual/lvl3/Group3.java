@@ -14,4 +14,8 @@ public class Group3 extends Group {
 	
 	@Override	public void free() {									POOL.free(this);			}
 	@Override	public int getNumberOfShots() {							return 4;					}
+	@Override
+	public int getXp() {
+		return super.getXp() * 2;
+	}
 }

@@ -1,5 +1,7 @@
 package behind.levelbuilder;
 
+import jeu.CSG;
+
 /**
  * Created by julien on 10/25/15.
  */
@@ -51,12 +53,12 @@ public enum Nest {
   L9(100, 90, false),
   L10(100, 95, false);
 
-  float xPercent, yPercent;
+  float x, y;
   boolean top;
 
   Nest(int x, int y, boolean top) {
-    xPercent = x;
-    yPercent = y;
+    this.x = (x * CSG.screenWidth) / 100;
+    this.y = (y * CSG.height) / 100;
     this.top = top;
   }
 }

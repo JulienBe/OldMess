@@ -19,4 +19,8 @@ public class ZigZag3 extends ZigZag {
 	@Override	public int getColor() {						return BLUE;					}
 	@Override	protected float getFloatFactor() {			return 1.5f;					}
 	protected Vector2 getSmokeVector() {					return smokeVector;				}
+	@Override
+	public int getXp() {
+		return super.getXp() * 2;
+	}
 }

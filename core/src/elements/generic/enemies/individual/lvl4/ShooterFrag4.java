@@ -11,4 +11,8 @@ public class ShooterFrag4 extends ShooterFrag3 {
 	public static final Pool<ShooterFrag4> POOL = Pools.get(ShooterFrag4.class);
 	
 	@Override	public void free() {						POOL.free(this);							}
+	@Override
+	public int getXp() {
+		return super.getXp() * 3;
+	}
 }

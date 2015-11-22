@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pool.Poolable;
 
-import elements.particular.Player;
+import elements.particular.players.Player;
 import elements.particular.particles.Particles;
 
 public class ThrusterParticle implements Poolable {

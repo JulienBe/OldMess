@@ -26,8 +26,8 @@ public class Diabolo extends Enemy {
 	public static final Pool<Diabolo> POOL = Pools.get(Diabolo.class);
 	private int shotNumber, index;
 
-	public void init() {
-		Positionner.UP_WIDE.set(this);
+	@Override
+	public void added(float x, float y) {
 		if (CSG.R.nextBoolean())
 			pos.set(CSG.halfWidth - Stats.U10, CSG.height);
 		else
@@ -35,6 +35,7 @@ public class Diabolo extends Enemy {
 		dir.set(-getEnemyStats().getSpeed() / 5, -getEnemyStats().getSpeed());
 		nextShot = INIT_NEXT_SHOT;
 		index = 0;
+    super.added(x, y);
 	}
 	
 	@Override

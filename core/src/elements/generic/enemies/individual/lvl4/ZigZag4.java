@@ -19,4 +19,8 @@ public class ZigZag4 extends ZigZag3 {
 	@Override	public void free() {						POOL.free(this);					}
 	@Override	public int getColor() {						return GREEN;						}
 	@Override	protected float getFloatFactor() {			return 2;							}
+	@Override
+	public int getXp() {
+		return super.getXp() * 3;
+	}
 }

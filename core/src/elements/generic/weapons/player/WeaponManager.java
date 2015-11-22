@@ -6,14 +6,15 @@ import jeu.CSG;
 import jeu.Profil;
 import jeu.mode.EndlessMode;
 import elements.generic.weapons.Weapon;
+import elements.particular.players.*;
 
 public abstract class WeaponManager {
 	
-	public float init(float nextShot) {
+	public float init(float nextShot, Player player) {
 		if (EndlessMode.now > nextShot) {
 			if (++Weapon.color >= PlayerWeapon.COLORS.length)
 				Weapon.color = 0;
-			init();
+			init(player);
 			return EndlessMode.now + getCadenceTir();
 		}
 		return nextShot;
@@ -46,7 +47,7 @@ public abstract class WeaponManager {
 	public abstract Color playerColor();
 	protected abstract float getCadenceTir();
 	public abstract String getLabel();
-	protected abstract void init();
+	protected abstract void init(Player player);
 	public abstract int nv();
 
 }

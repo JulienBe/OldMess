@@ -8,7 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 
-import elements.particular.Player;
+import elements.particular.players.Player;
 
 public class PinkWeaponManager extends WeaponManager {
 	// rotation 85 : [-0.9961947:0.087155804]
@@ -19,9 +19,9 @@ public class PinkWeaponManager extends WeaponManager {
 	private static float posX, posY;
 	private static boolean alternate = true;
 	
-	public void init(){
+	public void init(Player player){
 		posX = Player.xCenter - PinkWeapon.DIMENSIONS.halfWidth / 3;
-		posY = Player.POS.y + Player.HEIGHT;
+		posY = Player.POS.y + player.height;
 		alternate = !alternate;
 		if (EndlessMode.alternate)
 			SoundMan.playBulletSound(SOUND);

@@ -21,4 +21,8 @@ public class Shooter4 extends Shooter3 {
 	}
 	
 	@Override	public void free() {				POOL.free(this);				}
+	@Override
+	public int getXp() {
+		return super.getXp() * 3;
+	}
 }

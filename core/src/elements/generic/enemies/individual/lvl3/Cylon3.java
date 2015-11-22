@@ -26,4 +26,8 @@ public class Cylon3 extends Cylon {
 	@Override	public Animations getAnimation() {		return Animations.CYLON_BLUE;			}
 	@Override	public void free() {					POOL.free(this);						}
 	@Override	public int getColor() {					return BLUE;							}
+	@Override
+	public int getXp() {
+		return super.getXp() * 2;
+	}
 }

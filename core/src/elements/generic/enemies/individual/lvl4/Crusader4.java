@@ -25,4 +25,8 @@ public class Crusader4 extends Crusader3 {
 	}
 	
 	@Override	public void free() {					POOL.free(this);				}
+	@Override
+	public int getXp() {
+		return super.getXp() * 3;
+	}
 }

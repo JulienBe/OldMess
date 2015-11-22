@@ -12,6 +12,7 @@ import elements.generic.Element;
 import elements.generic.weapons.enemies.EnemyWeapon;
 import elements.generic.weapons.player.PlayerWeapon;
 import elements.particular.bonuses.Bonus;
+import elements.particular.players.*;
 import elements.particular.particles.Particles;
 
 public abstract class Weapon extends Element implements Poolable {
@@ -23,12 +24,12 @@ public abstract class Weapon extends Element implements Poolable {
 	public static int color = 0;
 	private static final int XP_WITH_SHIELD = 7;
 
-	public static void drawAndMove(SpriteBatch batch) {
+	public static void drawAndMove(SpriteBatch batch, Player player) {
 		playerWeapons(batch);
 		testCollision = !testCollision;
 		// Attention que si y'a une collision on skip le reste de la liste. D'ou l'effet bizarre quand on est invicible
-		act(batch, ENEMIES_LIST);
-		act(batch, BOSSES_LIST);
+		act(batch, ENEMIES_LIST, player);
+		act(batch, BOSSES_LIST, player);
     }
 
 	private static void playerWeapons(SpriteBatch batch) {
@@ -52,17 +53,17 @@ public abstract class Weapon extends Element implements Poolable {
 		}
 	}
 
-	private static void act(SpriteBatch batch, Array<EnemyWeapon> weapons) {
+	private static void act(SpriteBatch batch, Array<EnemyWeapon> weapons, Player player) {
 		for (final EnemyWeapon eWeapon : weapons) {
 			eWeapon.now += EndlessMode.delta;
 			eWeapon.displayOnScreen(batch);
 			if (testCollision) {
-				if (eWeapon.testCollisionVaisseau() && !EndlessMode.lost) {
+				if (eWeapon.testCollisionVaisseau(player) && !EndlessMode.lost) {
 					removeEnemyWeapon(eWeapon, weapons);
 					continue;
 				}
-			} else if (eWeapon.testCollsionAdds()) {
-				removeEnemyWeapon(eWeapon, weapons);
+//			} else if (eWeapon.testCollsionAdds()) {
+//				removeEnemyWeapon(eWeapon, weapons);
 				continue;
 			}
 			eWeapon.move();

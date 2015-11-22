@@ -1,5 +1,6 @@
 package menu.screens;
 
+import elements.particular.players.Pfire1;
 import menu.JeuBackground;
 import menu.tuto.OnClick;
 import menu.ui.Button;
@@ -12,11 +13,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 
-import elements.generic.weapons.player.ArmeAdd;
-import elements.particular.Player;
+import elements.particular.players.Player;
 import elements.particular.particles.Particles;
-import elements.particular.particles.individual.weapon.GreenAddParticle;
-
 
 public class MenuXP extends AbstractScreen{
 	
@@ -69,9 +67,8 @@ public class MenuXP extends AbstractScreen{
 		});
 		updateTexteCadence();
 		ajout(boutonCadence);
-		Player.POS.set((CSG.screenWidth / 2) - Player.HALF_WIDTH, CSG.height / 3);
-		for (int i = 0; i < 4; i++)
-			Player.addDrone();
+		Player player = new Pfire1();
+		Player.POS.set((CSG.screenWidth / 2) - player.halfWidth, CSG.height / 3);
 		setRenderBackground(false);
 	}
 
@@ -147,8 +144,6 @@ public class MenuXP extends AbstractScreen{
 		updateTexteUpgrade();
 		updateTexteCadence();
 		updateTexteXp();
-		ArmeAdd.determinerCadenceTir();
-		GreenAddParticle.COLOR = ArmeAdd.COLORS[CSG.R.nextInt(ArmeAdd.COLORS.length)];
 		buttons.removeValue(boutonUndo, true);
 	}
 

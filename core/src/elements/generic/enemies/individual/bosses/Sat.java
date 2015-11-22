@@ -32,10 +32,9 @@ public class Sat extends Enemy {
 	private boolean goodShape = true;
 
 	public Sat() {
-		init();
 	}
 
-	public void init() {
+	public void init(float x, float y) {
 		pos.set(CSG.screenWidth, CSG.heightDiv10Mul3 - DIMENSIONS.halfWidth);
 		dir.x = -getEnemyStats().getSpeed();
 		dir.y = 0;

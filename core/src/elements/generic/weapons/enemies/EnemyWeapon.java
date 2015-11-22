@@ -4,11 +4,10 @@ import jeu.CSG;
 import jeu.Physic;
 import jeu.Stats;
 import jeu.mode.EndlessMode;
-import assets.AssetMan;
 
 import com.badlogic.gdx.math.Vector2;
 import elements.generic.weapons.Weapon;
-import elements.particular.Player;
+import elements.particular.players.Player;
 import elements.particular.bonuses.XP;
 
 public abstract class EnemyWeapon extends Weapon {
@@ -18,7 +17,7 @@ public abstract class EnemyWeapon extends Weapon {
 	private static final Vector2 tmpV = new Vector2();
 	protected static final float ALTERNATE_COLOR = CSG.gm.palette().convertARGB(1, 0.8f, 0.7f, 08f), KINDER_WEAPON_COLOR = CSG.gm.palette().convertARGB(1, 1f, 0.5f, 0.7f);
 	
-	public boolean testCollisionVaisseau() {
+	public boolean testCollisionVaisseau(Player player) {
 		tmpV.set(Player.xCenter, Player.yCenter);
 		tmpFloat = tmpV.dst(pos.x + getDimensions().halfWidth, pos.y + getDimensions().halfHeight);
 		
@@ -32,16 +31,16 @@ public abstract class EnemyWeapon extends Weapon {
 				nextGraze = EndlessMode.now + .1f;
 			}
 			if (tmpFloat < getDimensions().halfWidth || tmpFloat < getDimensions().halfHeight) {
-				Player.touched();
+				player.touched();
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public boolean testCollsionAdds() {
-		return Physic.isAddTouched(pos, getDimensions().width, getDimensions().height);
-	}
+//	public boolean testCollsionAdds() {
+//		return Physic.isAddTouched(pos, getDimensions().width, getDimensions().height);
+//	}
 	
 	public void init(Vector2 position, float halfWidth, float demiHauteur, float modifVitesse) {
 		position.set(position.x + halfWidth - getDimensions().halfWidth, position.y + demiHauteur - getDimensions().halfHeight);

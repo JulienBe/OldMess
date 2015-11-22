@@ -16,5 +16,9 @@ public class Crusader3 extends Crusader {
 		shotNumber = AbstractShot.interval(this, 3, 1 + CSG.R.nextFloat() * 2, shotNumber);
 	}
 	
-	@Override	public void free() {				POOL.free(this);				}	
+	@Override	public void free() {				POOL.free(this);				}
+	@Override
+	public int getXp() {
+		return super.getXp() * 2;
+	}
 }

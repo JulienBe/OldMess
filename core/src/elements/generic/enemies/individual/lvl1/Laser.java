@@ -26,7 +26,7 @@ public class Laser extends Enemy {
 	protected float rotation = 0;
 	private boolean left;
 	
-	public void init() {
+	public void init(float x, float y) {
 		if (CSG.R.nextBoolean())
 			pos.set((CSG.halfWidth - DIMENSIONS.halfWidth) - DIMENSIONS.width, CSG.height);
 		else

@@ -13,6 +13,10 @@ public class Diabolo3 extends Diabolo {
 	
 	@Override	protected void interval() {		shotNumber = AbstractShot.interval(this, 4, 2, shotNumber);	}
 	@Override	public void free() {					POOL.free(this);				}
-	@Override 	protected float getPhaseDuration() {	return 14;						}
+	@Override protected float getPhaseDuration() {	return 14;						}
 	@Override	public int getNumberOfShots() {			return 4;						}
+	@Override
+	public int getXp() {
+		return super.getXp() * 2;
+	}
 }

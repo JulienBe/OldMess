@@ -22,7 +22,7 @@ public class BouleTirCote extends Enemy {
 	public static final Pool<BouleTirCote> POOL = Pools.get(BouleTirCote.class);
 	protected int numeroTir;
 	
-	public void init() {
+	public void init(float x, float y) {
 		dir.set(0, getEnemyStats().getSpeed());
 		nextShot = 1;
 		numeroTir = 1;

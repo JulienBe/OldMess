@@ -12,11 +12,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import elements.generic.weapons.player.WeaponManager;
-import elements.particular.Player;
+import elements.particular.players.Player;
 
 public class WeaponButton extends AbstractButton {
 	
-	public static final float width = CSG.screenWidth / 7, widthDiv10 = width / 10, offsetShip = (width - Player.WIDTH)/2, height = width * 1.3f, padding = (CSG.screenWidth / 7) / 7, heightBackground = height * 1.1f;
+	public static final float width = CSG.screenWidth / 7, widthDiv10 = width / 10, height = width * 1.3f, padding = (CSG.screenWidth / 7) / 7, heightBackground = height * 1.1f;
 	private static final float unselectedWidth = width * 0.8f, unselectedHeight = height * 0.8f;
 	private final TextureRegion tr;
 	private final int num;
@@ -56,16 +56,16 @@ public class WeaponButton extends AbstractButton {
 	 * @param batch
 	 * @return 
 	 */
-	public void draw(SpriteBatch batch) {
+	public void draw(SpriteBatch batch, Player player) {
 		batch.setColor(CSG.gm.palette().black);
 		batch.draw(AssetMan.backgroundButton, x, y, width, heightBackground);
 		for (Barre b : barres)
 			b.draw(batch);
-		
+		float offsetShip = (width - player.width)/2;
 		if (selected) {
 			batch.setColor(CSG.gm.palette().white);
 			batch.draw(tr, x, y, width, height);
-			batch.draw(AnimPlayer.TEXTURES[2], x + offsetShip, y - Player.HEIGHT, Player.WIDTH, Player.HEIGHT);
+			batch.draw(AnimPlayer.TEXTURES[2], x + offsetShip, y - player.height, player.width, player.height);
 		} else {
 			batch.setColor(CSG.gm.palette().alpha70);
 			batch.draw(tr, x + widthDiv10, y, unselectedWidth, unselectedHeight);

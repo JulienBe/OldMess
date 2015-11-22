@@ -8,16 +8,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 
-import elements.particular.Player;
+import elements.particular.players.Player;
 
 public class TWeaponManager extends WeaponManager {
 	
 	private static final Sound SOUND = Gdx.audio.newSound(Gdx.files.internal("sons/armehantee.wav"));
 	private static float posX, posY;
 	
-	public void init(){
+	public void init(Player player){
 		posX = Player.xCenter - TWeapon.DIMENSIONS.halfWidth;
-		posY = Player.POS.y + Player.HEIGHT;
+		posY = Player.POS.y + player.height;
 		if (EndlessMode.alternate)
 			SoundMan.playBulletSound(SOUND);
 		switch (CSG.profile.lvlTWeapon) {

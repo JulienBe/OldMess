@@ -7,16 +7,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 
-import elements.particular.Player;
+import elements.particular.players.Player;
 
 public class FireballManager extends WeaponManager {
 
 	private static final Sound SOUND = Gdx.audio.newSound(Gdx.files.internal("sons/156895__halgrimm__shot-2-0.wav"));
 	private static float posX, posY;
 
-	public void init() {
+	public void init(Player player) {
 		posX = Player.xCenter - Fireball.DIMENSIONS.halfWidth;
-		posY = Player.POS.y + Player.HEIGHT;
+		posY = Player.POS.y + player.height;
 		if (EndlessMode.alternate)
 			SoundMan.playBulletSound(SOUND);
 		switch (CSG.profile.lvlFireball) {

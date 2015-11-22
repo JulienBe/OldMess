@@ -25,11 +25,12 @@ public class Ball extends Enemy {
 	protected static final float INIT_NEXT_SHOT = 3f;
 	protected static final Dimensions DIMENSIONS = Dimensions.BALL;
 	public static final Pool<Ball> POOL = Pools.get(Ball.class);
-	
-	public void init() {
+
+	@Override
+	public void added(float x, float y) {
 		nextShot = INIT_NEXT_SHOT;
-		Positionner.UP_WIDE.set(this);
 		dir.set(0, - getEnemyStats().getSpeed());
+    super.added(x, y);
 	}
 
 	@Override

@@ -35,5 +35,9 @@ public class Kinder3 extends Kinder {
 	}
 	@Override	public void free() {				POOL.free(this);				}
 	@Override   public float getPhaseDuration() {	return PHASE_DURATION;			}
+	@Override
+	public int getXp() {
+		return super.getXp() * 2;
+	}
 }
 

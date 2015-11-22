@@ -24,4 +24,8 @@ public class Laser4 extends Laser3 {
 	}
 	
 	@Override	public void free() {						POOL.free(this);						}
+	@Override
+	public int getXp() {
+		return super.getXp() * 3;
+	}
 }

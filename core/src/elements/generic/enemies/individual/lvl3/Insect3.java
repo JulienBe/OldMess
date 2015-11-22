@@ -12,4 +12,8 @@ public class Insect3 extends Insect {
 	
 	@Override	protected int getNumberOfShotsRandom() {	return 6;						}
 	@Override	public void free() {						POOL.free(this);				}
+	@Override
+	public int getXp() {
+		return super.getXp() * 2;
+	}
 }

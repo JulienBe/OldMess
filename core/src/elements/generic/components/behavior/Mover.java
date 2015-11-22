@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import elements.generic.Element;
 import elements.generic.enemies.Enemy;
-import elements.particular.Player;
+import elements.particular.players.Player;
 
 public abstract class Mover {
 	

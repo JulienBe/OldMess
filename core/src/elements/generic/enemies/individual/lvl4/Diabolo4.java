@@ -26,4 +26,8 @@ public class Diabolo4 extends Diabolo3 {
 	@Override	public void free() {					POOL.free(this);					}
 	@Override 	protected float getPhaseDuration() {	return 20;							}
 	@Override	public int getNumberOfShots() {			return 6;							}
+	@Override
+	public int getXp() {
+		return super.getXp() * 3;
+	}
 }

@@ -38,7 +38,7 @@ public class BossMine extends Enemy {
 		super.reset();
 	}
 
-	public void init() {
+	public void init(float x, float y) {
 		goodShape = true;
 		nextShot = 3f;
 		pos.set(CSG.halfWidth - DIMENSIONS.halfWidth, CSG.height);

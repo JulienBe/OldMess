@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.Pool.Poolable;
 
 import elements.generic.enemies.Enemy;
 import elements.generic.weapons.player.PlayerWeapon;
-import elements.particular.Player;
+import elements.particular.players.Player;
 import elements.particular.particles.ParticuleBundles;
 
 public class ColorOverTime implements Poolable {

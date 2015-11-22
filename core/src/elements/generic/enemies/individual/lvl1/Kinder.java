@@ -24,7 +24,7 @@ public class Kinder extends Enemy {
 	public static final Pool<Kinder> POOL = Pools.get(Kinder.class);
 	protected int index, shotNumber = 0;
 	
-	public void init() {
+	public void init(float x, float y) {
 		Positionner.SIDES.set(this);
 		nextShot = INIT_NEXT_SHOT;
 		index = 0;

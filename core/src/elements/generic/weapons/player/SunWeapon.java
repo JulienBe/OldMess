@@ -10,8 +10,9 @@ import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pool.Poolable;
 
 import elements.generic.components.Dimensions;
-import elements.particular.Player;
+import elements.particular.players.Player;
 import elements.particular.particles.Particles;
+import elements.particular.players.*;
 
 public class SunWeapon extends PlayerWeapon implements Poolable {
 
@@ -38,10 +39,10 @@ public class SunWeapon extends PlayerWeapon implements Poolable {
 	@Override	public int getPower() {					return 8;														}
 	public static Object getLabel() {					return LABEL;	}
 
-	public static void init(Vector2 dir) {
+	public static void init(Vector2 dir, Player player) {
 		final SunWeapon s = POOL.obtain();
 		s.dir.set(dir.x, dir.y).scl(Stats.SUN_SPEED);
-		s.pos.set((Player.xCenter) - DIMENSIONS.halfWidth, (Player.yCenter) + Player.HALF_HEIGHT);
+		s.pos.set((Player.xCenter) - DIMENSIONS.halfWidth, (Player.yCenter) + player.halfHeight);
 		PLAYER_LIST.add(s);
 		Particles.shotSparkles(s.pos.x - DIMENSIONS.quartWidth, s.pos.y + DIMENSIONS.halfHeight, dir.angle());
 	}

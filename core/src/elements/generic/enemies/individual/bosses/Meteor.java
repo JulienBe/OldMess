@@ -21,7 +21,7 @@ public class Meteor extends Enemy {
 	public static final Pool<Meteor> POOL = new Pool<Meteor>(16) {		protected Meteor newObject() {			return new Meteor();		}	};
 	private final float angularSpeed = (float) (CSG.R.nextGaussian() * 20); 
 	
-	public void init() {
+	public void init(float x, float y) {
 		dir.set(0, -getEnemyStats().getSpeed());
 		pos.set((CSG.R.nextFloat() * CSG.screenWidth) - DIMENSIONS.halfWidth, CSG.height);
 		angle = CSG.R.nextFloat() * 360;

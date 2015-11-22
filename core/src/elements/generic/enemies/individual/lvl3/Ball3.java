@@ -24,4 +24,8 @@ public class Ball3 extends Ball {
 	}
 	
 	@Override	public void free() {							POOL.free(this);						}
+	@Override
+	public int getXp() {
+		return super.getXp() * 2;
+	}
 }

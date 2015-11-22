@@ -33,10 +33,9 @@ public class Quad extends Enemy {
 	
 	public Quad() {
 		super();
-		init();
 	}
 
-	public void init() {
+	public void init(float x, float y) {
 		pos.set(CSG.halfWidth - DIMENSIONS.halfWidth, CSG.height);
 		dir.set(-getEnemyStats().getSpeed() * 4f, -getEnemyStats().getSpeed());
 		animIndex = 0;
@@ -45,7 +44,6 @@ public class Quad extends Enemy {
 	public void reset() {
 		super.reset();
 		nextShot = .2f;
-		init();
 	}
 	
 	@Override

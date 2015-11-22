@@ -8,7 +8,7 @@ public abstract class AbstractButton {
 	protected final Array<Barre> barres = new Array<Barre>();
 	
 	protected void verticalBarre(float x, float y, float heightToCover) {
-		final int nbrBarre = (int) (((heightToCover * 0.8f) / Barre.HEIGHT));
+		final int nbrBarre = (int) (((heightToCover * 1.1f) / Barre.HEIGHT));
 		final float distanceCouverte = nbrBarre * Barre.HEIGHT;
 		final float ecartTotal = heightToCover - distanceCouverte;
 		final float ecart = ecartTotal / (nbrBarre-1);
@@ -20,12 +20,12 @@ public abstract class AbstractButton {
 	}
 	
 	protected void horizontalBarre(float x, float y, float widthToCover) {
-		final int nbrBarre = (int) (((widthToCover * 0.7f) / Barre.HEIGHT));
+		final int nbrBarre = (int) (((widthToCover * 1.15f) / Barre.HEIGHT));
 		final float distanceCouverte = nbrBarre * Barre.HEIGHT;
 		final float ecartTotal = widthToCover - distanceCouverte;
 		final float ecart = ecartTotal / (nbrBarre-1);
 		float tmpX = -Barre.HALF_HEIGHT;
-		for (int i = 0; i < nbrBarre; i++) {
+		for (int i = 0; i <= nbrBarre; i++) {
 			barres.add(Barre.POOL.obtain().init(x + tmpX, y));
 			tmpX += (Barre.HEIGHT + ecart);
 		}

@@ -28,7 +28,7 @@ public class RoundAndRound extends Enemy {
 	private boolean shootRight = true, leftOfTheScreen;
 	protected int shotNumber = 0, shotInterval;
 	
-	public void init() {
+	public void init(float x, float y) {
 		dir.set(0, -getEnemyStats().getSpeed());
 		Positionner.UP_WIDE.set(this);
 		nextShot = INIT_NEXT_SHOT;

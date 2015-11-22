@@ -89,8 +89,8 @@ public class ChoixDifficulte extends AbstractScreen {
 		Particles.background(CSG.batch);
 		for (int i = 0; i < buttons.size; i++) 
 			if (buttons.get(i) != null) buttons.get(i).draw(CSG.batch);
-		for (WeaponButton wb : weaponButtons) 
-			wb.draw(CSG.batch);
+//		for (WeaponButton wb : weaponButtons)
+//			wb.draw(CSG.batch);
 		CSG.end();
 		EndlessMode.majDeltas(true);
 		EndlessMode.fps = Gdx.graphics.getFramesPerSecond();

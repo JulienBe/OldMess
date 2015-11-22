@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pools;
 import com.badlogic.gdx.utils.Pool.Poolable;
 
-import elements.particular.Player;
+import elements.particular.players.Player;
 
 public class Shield extends BonusTimeMvt implements Poolable{
 
@@ -20,9 +20,9 @@ public class Shield extends BonusTimeMvt implements Poolable{
 	private float angle = 0;
 
 	@Override
-	public void taken() {
-		Player.activateShield();
-		super.taken();
+	public void taken(Player player) {
+		super.taken(player);
+		player.activateShield();
 	}
 	
 	@Override

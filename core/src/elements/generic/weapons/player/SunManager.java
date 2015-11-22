@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import jeu.CSG;
 import jeu.mode.EndlessMode;
+import elements.particular.players.*;
 
 public class SunManager extends WeaponManager {
 	
@@ -14,12 +15,12 @@ public class SunManager extends WeaponManager {
 	public static final float[] ROTATIONS = { 360 / 2, 360 / 3, 360 / 4, 360 / 5, 360 / 6, 360 / 7, 360 / 8 };
 	
 	@Override
-	protected void init() {
+	protected void init(Player player) {
 		if (EndlessMode.alternate)
 			SoundMan.playBulletSound(SoundMan.shotRocket);
-		SunWeapon.init(VECTOR.rotate(8));
+		SunWeapon.init(VECTOR.rotate(8), player);
 		for (int i = 1; i < CSG.profile.lvlSunWeapon; i++)
-			SunWeapon.init(VECTOR.rotate(ROTATIONS[CSG.profile.lvlSunWeapon - 2]));
+			SunWeapon.init(VECTOR.rotate(ROTATIONS[CSG.profile.lvlSunWeapon - 2]), player);
 	}
 
 	@Override	public String getLabel() {				return SunWeapon.LABEL;				}

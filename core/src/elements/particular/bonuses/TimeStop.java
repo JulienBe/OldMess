@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pools;
 import com.badlogic.gdx.utils.Pool.Poolable;
+import elements.particular.players.*;
 
 public class TimeStop extends BonusTimeMvt implements Poolable{
 
@@ -16,9 +17,9 @@ public class TimeStop extends BonusTimeMvt implements Poolable{
 	private static final float SPEED = Stats.V_BONUS_STOP;
 
 	@Override
-	public void taken() {
+	public void taken(Player player) {
 		EndlessMode.addBonusStop();
-		super.taken();
+		super.taken(player);
 	}
 	
 	public static void mightAppear(float x, float y) {

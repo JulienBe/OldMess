@@ -17,7 +17,7 @@ import elements.generic.components.shots.AbstractShot;
 import elements.generic.components.shots.Gatling;
 import elements.generic.enemies.Enemy;
 import elements.generic.weapons.enemies.ViciousBullet;
-import elements.particular.Player;
+import elements.particular.players.Player;
 
 public class Orbital extends Enemy {
 	
@@ -26,7 +26,7 @@ public class Orbital extends Enemy {
 	public static final Pool<Orbital> POOL = Pools.get(Orbital.class);
 	private int xp, hp;
 	
-	public void init() {
+	public void init(float x, float y) {
 		nextShot = INIT_NEXT_SHOT;
 		Positionner.MIDDLE.set(this);
 		xp = (int) (Score.score / 80f);

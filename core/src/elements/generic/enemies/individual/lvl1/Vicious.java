@@ -24,7 +24,7 @@ public class Vicious extends Enemy {
 	public static final Pool<Vicious> POOL = Pools.get(Vicious.class);
 	private int xp, hp;
 	
-	public void init() {
+	public void init(float x, float y) {
 		nextShot = INIT_NEXT_SHOT;
 		dir.set(0, -getEnemyStats().getSpeed());
 		Positionner.MIDDLE.set(this);

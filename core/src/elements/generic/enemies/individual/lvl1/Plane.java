@@ -58,7 +58,7 @@ public class Plane extends Enemy {
 		AbstractShot.doubleShotDown(Gatling.SMALL_FIREBALL, TMP_POS, TMP_DIR, Stats.U20);
 	}
 	
-	public void init() {
+	public void init(float x, float y) {
 		Positionner.UP.set(this);
 		goodShape = true;
 		nextShot = INIT_NEXT_SHOT;

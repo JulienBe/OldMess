@@ -1,5 +1,6 @@
 package elements.particular.bonuses;
 
+import elements.particular.players.*;
 import jeu.CSG;
 import jeu.Physic;
 import jeu.Stats;
@@ -36,7 +37,7 @@ public abstract class Bonus {
 	 * Affiches tous les bonus, les fait tourner et test la collision avec le joueur
 	 * @param batch
 	 */
-	public static void drawAndMove(SpriteBatch batch) {
+	public static void drawAndMove(SpriteBatch batch, Player player) {
 		batch.setColor(TRANSPARENCE);
 		for (final Bonus b : TAKEN) {
 			b.timeTaken += EndlessMode.deltaU * b.timeTaken;
@@ -51,7 +52,7 @@ public abstract class Bonus {
 		batch.setColor(CSG.gm.palette().white);
 		for (final Bonus b : LIST) {
 			b.drawMeMoveMe(batch);
-			b.detectPris();
+			b.detectPris(player);
 			if (Physic.isOnScreen(b.pos.x, b.pos.y, WIDTH) == false) {
 				LIST.removeValue(b, true);
 				b.free();
@@ -59,9 +60,9 @@ public abstract class Bonus {
 		}
 	}
 
-	private void detectPris() {
+	private void detectPris(Player player) {
 		if (Physic.isShipInRect(pos.x - HITBOX, pos.y - HITBOX, HITBOX_TOP_RIGHT, HITBOX_TOP_RIGHT)) {	
-			taken();
+			taken(player);
 			LIST.removeValue(this, true);
 		}
 	}
@@ -75,7 +76,7 @@ public abstract class Bonus {
 	/**
 	 * Must also free the Bonus
 	 */
-	public void taken() {
+	public void taken(Player player) {
 		SoundMan.playBruitage(SoundMan.bonusTaken);
 		timeTaken = 0.05f;
 		TAKEN.add(this);

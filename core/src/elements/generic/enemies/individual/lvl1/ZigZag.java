@@ -1,5 +1,6 @@
 package elements.generic.enemies.individual.lvl1;
 
+import jeu.CSG;
 import jeu.Stats;
 import jeu.mode.EndlessMode;
 import behind.SoundMan;
@@ -24,9 +25,12 @@ public class ZigZag extends Enemy {
 	public static final Pool<ZigZag> POOL = Pools.get(ZigZag.class);
 	private static final Vector2 smokeVector = new Vector2(0, Stats.uDiv4);
 
-	public void init() {
-		Positionner.UP_WIDE.set(this);
-		dir.set(0, -getEnemyStats().getSpeed() * 24);
+	public void added(float x, float y) {
+    if (x > CSG.halfWidth)
+		  dir.set(0, -getEnemyStats().getSpeed() * 24);
+    else
+      dir.set(0, -getEnemyStats().getSpeed() * 24);
+    super.added(x, y);
 	}
 	
 	@Override

@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pool.Poolable;
 
 import elements.generic.weapons.player.PlayerWeapon;
-import elements.particular.Player;
+import elements.particular.players.Player;
 
 public class ExplosionImpactBullet implements Poolable {
 	

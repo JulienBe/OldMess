@@ -25,12 +25,13 @@ public class Shooter extends Enemy {
 	protected static final float xOffset = DIMENSIONS.halfWidth - Fireball.DIMENSIONS.halfWidth/1.5f, INIT_NEXT_SHOT = 1.5f;
 	public static final Pool<Shooter> POOL = Pools.get(Shooter.class);
 	private boolean goodShape = true;
-	
-	public void init() {
-		Positionner.UP_WIDE.set(this);
+
+	@Override
+	public void added(float x, float y) {
 		nextShot = 2f;
 		dir.set(0, -getEnemyStats().getSpeed());
 		goodShape = true;
+		super.added(x, y);
 	}
 	
 	@Override

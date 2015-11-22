@@ -1,5 +1,6 @@
 package menu;
 
+import elements.particular.players.Pfire1;
 import jeu.CSG;
 import jeu.Physic;
 import jeu.mode.EndlessMode;
@@ -8,12 +9,12 @@ import assets.sprites.AnimPlayer;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import elements.generic.weapons.Weapon;
-import elements.particular.Player;
+import elements.particular.players.Player;
 import elements.particular.particles.Particles;
 
 public class JeuBackground {
 	
-	private Player vaisseau = new Player();
+	private Player player = new Pfire1();
 	private boolean alterner = true;
 
 	public void reset() {
@@ -21,27 +22,26 @@ public class JeuBackground {
 	}
 
 	public void render(SpriteBatch batch, float delta) {
-		vaisseau.draw(batch);
-		Weapon.drawAndMove(batch);
+		player.draw(batch);
+		Weapon.drawAndMove(batch, player);
 		Particles.draw(batch);		
-		Player.updateCenters();
+		player.updateCenters();
 
 		if (alterner) {
-			Physic.collisionsTest();
-			vaisseau.shot();
+			Physic.collisionsTest(player);
+			player.shot();
 		}
-		if (Player.POS.y > Player.HEIGHT) {
+		if (Player.POS.y > player.height) {
 			Player.POS.y -= EndlessMode.delta25 * 6;
 			AnimPlayer.state = 2;
-			vaisseau.routineAdds();
 		} else
-			Player.POS.y = Player.HEIGHT;
+			Player.POS.y = player.height;
 		
 		alterner = !alterner;
 	}
 
-	public Player getVaisseau() {
-		return vaisseau;
+	public Player getPlayer() {
+		return player;
 	}
 }
 

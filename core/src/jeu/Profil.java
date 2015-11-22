@@ -4,7 +4,6 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.Json.Serializable;
 import com.badlogic.gdx.utils.JsonValue;
 
-import elements.generic.weapons.player.ArmeAdd;
 import elements.generic.weapons.player.BlueSweepWeapon;
 import elements.generic.weapons.player.BlueSweepWeaponManager;
 import elements.generic.weapons.player.Fireball;
@@ -18,7 +17,6 @@ import elements.generic.weapons.player.SunWeapon;
 import elements.generic.weapons.player.TWeapon;
 import elements.generic.weapons.player.TWeaponManager;
 import elements.generic.weapons.player.WeaponManager;
-import elements.particular.particles.individual.weapon.GreenAddParticle;
 
 public class Profil implements Serializable{
 	
@@ -131,8 +129,6 @@ public class Profil implements Serializable{
 	public void upCadenceAdd() {
 		xp -= getCoutCadenceAdd();
 		dronesFirerate++;
-		ArmeAdd.determinerCadenceTir();
-		GreenAddParticle.COLOR = ArmeAdd.COLORS[CSG.R.nextInt(ArmeAdd.COLORS.length)];
 		xpDisplay = "XP : " + xp;
 	}
 	

@@ -92,8 +92,8 @@ public class CSG extends Game implements ApplicationListener {
 		originalScoreFontScale = dimension * 0.75f;
 		scoreFont = setFont((int) (13 * dimension), 			dimension, generator, param, gm.palette().convertARGB(1, 0, 0, 1));
 
-		menuFontSmall = setFont((int) (12 * dimension), 		dimension, generator, param, gm.palette().convertARGB(.32f, .52f, 0.99f, 1));
-		menuFont = setFont((int) (23 * dimension), 		        dimension, generator, param, gm.palette().convertARGB(.32f, .52f, 0.99f, 1));
+		menuFontSmall = setFont((int) (12 * dimension), 		dimension, generator, param, gm.palette().convertARGB(.02f, .62f, 0.99f, 1));
+		menuFont = setFont((int) (23 * dimension), 		        dimension, generator, param, gm.palette().convertARGB(.02f, .62f, 0.99f, 1));
 		
 		generator.dispose(); // don't forget to dispose to avoid memory leaks!
 	}

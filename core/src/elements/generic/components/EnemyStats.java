@@ -75,7 +75,7 @@ public enum EnemyStats {
 			200),
 	CRUSADER(
 			320,
-			4, 1, 1, 1,
+			4, 50, 1, 1,
 			91,
 			40,
 			0.01f),
@@ -138,7 +138,7 @@ public enum EnemyStats {
 		firerates[2] = firerate * 0.95f;
 		firerates[3] = firerate * 0.9f;
 	}
-	
+
 	private EnemyStats(int hp, float speed, int xp, int explosion, float firerate, float firerateMul2, float firerateMul3, float firerateMul4) {
 		this(hp, speed, xp, explosion);
 		firerates[0] = firerate;
@@ -146,7 +146,7 @@ public enum EnemyStats {
 		firerates[2] = firerate * firerateMul3;
 		firerates[3] = firerate * firerateMul4;
 	}
-	
+
 	private EnemyStats(int hp, float speed, int xp, int explosion) {
 		this(hp, xp, explosion);
 		speed *= Stats.U;
@@ -161,7 +161,7 @@ public enum EnemyStats {
 		for (int i = 0; i < 4; i++) {
 			this.xp[i] = (int) (xp * Stats.MULTI_XP[i]);
 			bonusValue[i] = xp;
-			
+
 			hps[i] = (int) (hp * Stats.MULTI_HP[i]);
 			halfHps[i] = hps[i] / 2;
 			oneThirdHps[i] = hps[i] / 3;
@@ -179,7 +179,7 @@ public enum EnemyStats {
 		speeds[3] = speed * speedMul4;
 		initHalfSpeeds();
 	}
-	
+
 	private void initHalfSpeeds() {
 		for (int i = 0; i < 4; i++)
 			halfSpeeds[i] = speeds[i] / 2;

@@ -17,8 +17,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public final class AssetMan implements AssetErrorListener {
 
-	public static TextureRegion add, addShip, bomb, bombGrey, shield, stopBonus, stopBonusGrey, dust, debris, background, player, backgroundButton, shootingStar, red, smoke;
+	public static TextureRegion add, addShip, bomb, bombGrey, shield, stopBonus, stopBonusGrey, dust, debris, player, backgroundButton, shootingStar, red, smoke;
 	public static TextureRegion iconDefaultW, iconTW, iconFireballW, iconSpreadW, iconSunW, iconSpaceInvW, tWeapon, star, effect, addBullet, addShipShot, xp, planet;
+	public static TextureRegion playerFireLevel1;
 	public final static AssetManager MAN = new AssetManager();
 	private TextureAtlas atlas;
 
@@ -87,7 +88,6 @@ public final class AssetMan implements AssetErrorListener {
 		addShip = getTextureRegion("addvaisseau");
 		addBullet = getTextureRegion("addbullet");
 		stopBonus = getTextureRegion("bonusetoile");
-		background = getTextureRegion("spacefield");
 		shootingStar = getTextureRegion("etoilefilante");
 		addShipShot = getTextureRegion("addvaisseaushot");
 		stopBonusGrey = getTextureRegion("bonusetoilegris");
@@ -98,6 +98,8 @@ public final class AssetMan implements AssetErrorListener {
 		iconDefaultW = getTextureRegion("default80");
 		iconSpaceInvW = getTextureRegion("spaceinv80");
 		iconFireballW = getTextureRegion("fireball80");
+
+		playerFireLevel1 = getTextureRegion("playerFire1");
 	}
 
 	public static TextureRegion getTextureRegion(String string) {

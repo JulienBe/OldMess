@@ -5,7 +5,7 @@ import jeu.mode.EndlessMode;
 
 import com.badlogic.gdx.math.Vector2;
 
-import elements.particular.Player;
+import elements.particular.players.Player;
 import elements.particular.particles.individual.PrecalculatedParticles;
 import elements.particular.particles.individual.SparklesColorOverTimeWide;
 import elements.particular.particles.individual.explosions.SparklesColorOverTime;

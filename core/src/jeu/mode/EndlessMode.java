@@ -1,5 +1,6 @@
 package jeu.mode;
 
+import elements.particular.players.Pfire1;
 import menu.screens.Menu;
 import jeu.CSG;
 import jeu.Physic;
@@ -29,7 +30,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import elements.generic.enemies.Enemy;
 import elements.generic.weapons.Weapon;
-import elements.particular.Player;
+import elements.particular.players.Player;
 import elements.particular.bonuses.Bonus;
 import elements.particular.bonuses.XP;
 import elements.particular.other.WaveEffect;
@@ -66,10 +67,9 @@ public class EndlessMode implements Screen {
 	public EndlessMode(Game game, SpriteBatch batch, int level, int cheat) {
 		Gdx.input.setCatchBackKey(true);
 		this.game = game;
-		ship = new Player();
+		ship = new Pfire1();
 		difficulty = level;
 		init();
-		ship.initialiser();
 		gl = Gdx.graphics.getGL20();
 		gl.glViewport(0, 0, CSG.screenWidth, CSG.height);
 		bloom = CSG.bloom;
@@ -80,29 +80,30 @@ public class EndlessMode implements Screen {
 		CSG.talkToTheWorld.loadInterstitial();
 		if (CSG.bloom != null)		bloom.setBloomIntesity(CSG.profile.bloomIntensity);
 		else						bloom = new Bloom();
-		ship.reInit(); 
+		ship.init();
 		CSG.talkToTheWorld.showAds(false); 
 		cam.position.set(CSG.halfWidth, CSG.halfHeight, 0);
-        scoreSent = false;
-        xpAdded = false;
-        pause = false;
-        lost = false;
-        now = 0;
-        bombs = 0;
-        freezeBonus = 0;
-        timeSinceLost = 0;
-        timeStopBonus = 0;
-        CSG.reset();
-        Score.init();
-        Enemy.clear();
-        Weapon.clear();
-        Buttons.init();
-        transition.reset();
-        SoundMan.playMusic();
+		scoreSent = false;
+		xpAdded = false;
+		pause = false;
+		lost = false;
+		now = 0;
+		bombs = 0;
+		freezeBonus = 0;
+		timeSinceLost = 0;
+		timeStopBonus = 0;
+		CSG.reset();
+		Score.init();
+		Enemy.clear();
+		Weapon.clear();
+		Buttons.init();
+		transition.reset();
+		SoundMan.playMusic();
 		triggerStop = false;
 		cam.position.z = 1;
 		CSG.profilManager.persist();
 		started = false;
+		CSG.gm.orchestrator.reset();
 	}
 
 	@Override
@@ -250,7 +251,7 @@ public class EndlessMode implements Screen {
 
 	private void affichageEtUpdateStop() {
 		timeStopBonus -= delta;
-		batch.draw(AssetMan.red, (Player.POS.x + Player.HALF_WIDTH) - (TIER_WIDTH_JAUGE * timeStopBonus)/2, Player.POS.y - HEIGHT_JAUGE * 3, TIER_WIDTH_JAUGE * timeStopBonus, HEIGHT_JAUGE);
+		batch.draw(AssetMan.red, (Player.POS.x + ship.halfWidth) - (TIER_WIDTH_JAUGE * timeStopBonus)/2, Player.POS.y - HEIGHT_JAUGE * 3, TIER_WIDTH_JAUGE * timeStopBonus, HEIGHT_JAUGE);
 		if (timeStopBonus < 0) {
 			triggerStop = false;
 			transition.activate(20, Transition.TIME_STOP);
@@ -343,11 +344,11 @@ public class EndlessMode implements Screen {
 
 	private void affichageNonPerdu() {
 		stopActivated();
-		Bonus.drawAndMove(batch);
+		Bonus.drawAndMove(batch, ship);
 		Enemy.affichageEtMouvement(batch);
 		Particles.drawImpacts(batch);
 		Particles.draw(batch);
-		Weapon.drawAndMove(batch);
+		Weapon.drawAndMove(batch, ship);
 		ui();
 	}
 
@@ -360,7 +361,7 @@ public class EndlessMode implements Screen {
 			mouvement();
 			if (alternate) {
 				if (invoque)				CSG.gm.orchestrator.invoke(Score.score);
-				if (!triggerStop)		Physic.collisionsTest();
+				if (!triggerStop)		Physic.collisionsTest(ship);
 				Score.act(now, lost, triggerStop);
  			}
 			if (!freeze)	
@@ -387,11 +388,11 @@ public class EndlessMode implements Screen {
 	private static void pasTouche() {
 		Buttons.removeBack();
 		if (CSG.profile.manualBonus)	{
-			if (freezeBonus > 0 && !triggerStop) batch.draw(AssetMan.stopBonus,(menuX - Bonus.DISPLAY_WIDTH) + (cam.position.x-CSG.halfWidth) - Player.HALF_WIDTH, menuY, Bonus.DISPLAY_WIDTH, Bonus.DISPLAY_WIDTH);
-			else batch.draw(AssetMan.stopBonusGrey,(menuX - Bonus.DISPLAY_WIDTH) + (cam.position.x-CSG.halfWidth) - Player.HALF_WIDTH, menuY, Bonus.DISPLAY_WIDTH, Bonus.DISPLAY_WIDTH);
+			if (freezeBonus > 0 && !triggerStop) batch.draw(AssetMan.stopBonus,(menuX - Bonus.DISPLAY_WIDTH) + (cam.position.x-CSG.halfWidth) - ship.halfWidth, menuY, Bonus.DISPLAY_WIDTH, Bonus.DISPLAY_WIDTH);
+			else batch.draw(AssetMan.stopBonusGrey,(menuX - Bonus.DISPLAY_WIDTH) + (cam.position.x-CSG.halfWidth) - ship.halfWidth, menuY, Bonus.DISPLAY_WIDTH, Bonus.DISPLAY_WIDTH);
 			
-			if (bombs > 0) batch.draw(AssetMan.bomb, (menuX + Bonus.DISPLAY_WIDTH * 1.5f) + (cam.position.x-CSG.halfWidth) - Player.HALF_WIDTH, menuY, Bonus.DISPLAY_WIDTH,Bonus.DISPLAY_WIDTH);
-			else batch.draw(AssetMan.bombGrey, (menuX + Bonus.DISPLAY_WIDTH * 1.5f) + (cam.position.x-CSG.halfWidth) - Player.HALF_WIDTH, menuY, Bonus.DISPLAY_WIDTH,Bonus.DISPLAY_WIDTH);
+			if (bombs > 0) batch.draw(AssetMan.bomb, (menuX + Bonus.DISPLAY_WIDTH * 1.5f) + (cam.position.x-CSG.halfWidth) - ship.halfWidth, menuY, Bonus.DISPLAY_WIDTH,Bonus.DISPLAY_WIDTH);
+			else batch.draw(AssetMan.bombGrey, (menuX + Bonus.DISPLAY_WIDTH * 1.5f) + (cam.position.x-CSG.halfWidth) - ship.halfWidth, menuY, Bonus.DISPLAY_WIDTH,Bonus.DISPLAY_WIDTH);
 			
 		}
 	}
@@ -404,10 +405,10 @@ public class EndlessMode implements Screen {
 	}
 
 	private static void justeTouche() {
-		if (freezeBonus > 0 && Physic.isPointInRect(Gdx.input.getX(), CSG.height - Gdx.input.getY(), (menuX - Bonus.DISPLAY_WIDTH * 1.5f) - Player.HALF_WIDTH, menuY - Bonus.DISPLAY_WIDTH * 0.5f, Bonus.DISPLAY_WIDTH * 2, Bonus.DISPLAY_WIDTH * 2)) {
+		if (freezeBonus > 0 && Physic.isPointInRect(Gdx.input.getX(), CSG.height - Gdx.input.getY(), (menuX - Bonus.DISPLAY_WIDTH * 1.5f) - ship.halfWidth, menuY - Bonus.DISPLAY_WIDTH * 0.5f, Bonus.DISPLAY_WIDTH * 2, Bonus.DISPLAY_WIDTH * 2)) {
 			activateStop();
 			freezeBonus--;
-		} else if (bombs > 0 && Physic.isPointInRect(Gdx.input.getX(), CSG.height - Gdx.input.getY(), (menuX + Bonus.DISPLAY_WIDTH) - Player.HALF_WIDTH, menuY - Bonus.DISPLAY_WIDTH * 0.5f, Bonus.DISPLAY_WIDTH * 2, Bonus.DISPLAY_WIDTH * 2)) {
+		} else if (bombs > 0 && Physic.isPointInRect(Gdx.input.getX(), CSG.height - Gdx.input.getY(), (menuX + Bonus.DISPLAY_WIDTH) - ship.halfWidth, menuY - Bonus.DISPLAY_WIDTH * 0.5f, Bonus.DISPLAY_WIDTH * 2, Bonus.DISPLAY_WIDTH * 2)) {
 			Enemy.bombe();
 			bombs--;
 		}
@@ -459,7 +460,6 @@ public class EndlessMode implements Screen {
 	
 	public static void reset() {
 		Particles.clear();
-		ship = new Player();
 		menuX = (int) Player.POS.x;
 		menuY = (int) Player.POS.y;
 		triggerStop = false;

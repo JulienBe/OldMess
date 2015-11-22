@@ -10,7 +10,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
-import elements.particular.Player;
+import elements.particular.players.Player;
 
 public class BlueSweepWeaponManager extends WeaponManager {
 
@@ -19,11 +19,12 @@ public class BlueSweepWeaponManager extends WeaponManager {
 	private static float posX, posY;
 	private static int shoot;
 
-	public void init() {
+	@Override
+	public void init(Player player) {
 		if (EndlessMode.alternate)
 			SoundMan.playBulletSound(SOUND);
 		posX = Player.xCenter - BlueSweepWeapon.DIMENSIONS.halfWidth;
-		posY = Player.POS.y + Player.HEIGHT;
+		posY = Player.POS.y + player.height;
 		update();
 		for (int i = 0; i < shoot; i++) {
 			DIR.set(0, 1);
@@ -34,6 +35,7 @@ public class BlueSweepWeaponManager extends WeaponManager {
 	}
 
 	@Override	public String getLabel() {				return BlueSweepWeapon.LABEL;				}
+
 	@Override	public int nv() {						return CSG.profile.lvlSweepWeapon;			}
 	@Override	protected float getCadenceTir() {		return BlueSweepWeapon.FIRERATETIR;			}
 	public static void update() {						shoot = CSG.profile.lvlSweepWeapon * 14;	}

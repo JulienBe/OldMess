@@ -27,4 +27,8 @@ public class Plane4 extends Plane3 {
 		AbstractShot.shootDownRandom(Gatling.FIREBALL, TMP_POS, Stats.U20, 10);
 	}
 	@Override	public void free() {					POOL.free(this);					}
+	@Override
+	public int getXp() {
+		return super.getXp() * 3;
+	}
 }

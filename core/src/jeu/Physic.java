@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Array;
 import elements.generic.enemies.Enemy;
 import elements.generic.weapons.Weapon;
 import elements.generic.weapons.player.PlayerWeapon;
-import elements.particular.Player;
+import elements.particular.players.Player;
 
 public class Physic {
 	
@@ -53,10 +53,10 @@ public class Physic {
 		return way;
 	}
 
-	public static void collisionsTest() {
+	public static void collisionsTest(Player player) {
 		for (final Enemy enemy : Enemy.LIST) {
 			if (enemy.pos.y + CSG.heightDiv100 > CSG.height)	continue;
-			if (enemy.isOnPlayer())								Player.touchedEnnemy(enemy);
+			if (enemy.isOnPlayer())								player.touchedEnnemy(enemy);
 			collisionPlayerWeaponToEnemy(enemy, Weapon.PLAYER_LIST);
 			collisionPlayerWeaponToEnemy(enemy, Weapon.ADDS);
 		}
@@ -85,9 +85,9 @@ public class Physic {
 		 return rectX <= x && rectX + rectWidth >= x && rectY <= y && rectY + rectWidth >= y;
 	}
 
-	public static boolean isPlayerInRect(final Vector2 pos, final int rectWidth, final int rectHeight) {
+	public static boolean isPlayerInRect(final Vector2 pos, final int rectWidth, final int rectHeight, Player player) {
 		if (pos.x <= Player.xCenter && pos.x + rectWidth >= Player.xCenter && pos.y <= Player.yCenter && pos.y + rectHeight >= Player.yCenter) {
-			Player.touched();
+			player.touched();
 			return true;
 		}
 		return false;
@@ -126,26 +126,26 @@ public class Physic {
 	
 	private static boolean collision = false;
 	
-	public static boolean isAddTouched(final Vector2 pos, final float width, final float height) {
-		collision = false;
-		if (Player.leftDrone && Physic.isPointInRect(Player.centerLeft1AddX, Player.centerAdd1Y, pos, width, height)) {
-			Player.removeLeftAdd1();
-			collision = true;
-		}
-		if (Player.rightDrone && Physic.isPointInRect(Player.centerRight1AddX, Player.centerAdd1Y, pos, width, height))	{
-			Player.enleverAddDroite1();
-			collision = true;
-		}
-		if (Player.leftDrone2 && Physic.isPointInRect(Player.centerLeft2AddX, Player.centerAdd2Y, pos, width, height)) {
-			Player.removeLeftAdd2();
-			collision = true;
-		}
-		if (Player.rightDrone2 && Physic.isPointInRect(Player.centerRight2AddX, Player.centerAdd2Y, pos, width, height)) {
-			Player.enleverAddDroite2();
-			collision = true;
-		}
-		return collision;
-	}
+//	public static boolean isAddTouched(final Vector2 pos, final float width, final float height) {
+//		collision = false;
+//		if (Player.leftDrone && Physic.isPointInRect(Player.centerLeft1AddX, Player.centerAdd1Y, pos, width, height)) {
+//			Player.removeLeftAdd1();
+//			collision = true;
+//		}
+//		if (Player.rightDrone && Physic.isPointInRect(Player.centerRight1AddX, Player.centerAdd1Y, pos, width, height))	{
+//			Player.enleverAddDroite1();
+//			collision = true;
+//		}
+//		if (Player.leftDrone2 && Physic.isPointInRect(Player.centerLeft2AddX, Player.centerAdd2Y, pos, width, height)) {
+//			Player.removeLeftAdd2();
+//			collision = true;
+//		}
+//		if (Player.rightDrone2 && Physic.isPointInRect(Player.centerRight2AddX, Player.centerAdd2Y, pos, width, height)) {
+//			Player.enleverAddDroite2();
+//			collision = true;
+//		}
+//		return collision;
+//	}
 	
 	public static void mvtNoCheck(final Vector2 pos, final Vector2 dir) {
 		pos.add(dir.x * EndlessMode.delta, dir.y * EndlessMode.delta);

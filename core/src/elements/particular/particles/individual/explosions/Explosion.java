@@ -16,7 +16,7 @@ import elements.generic.Element;
 import elements.generic.enemies.Enemy;
 import elements.generic.weapons.enemies.EnemyWeapon;
 import elements.generic.weapons.player.PlayerWeapon;
-import elements.particular.Player;
+import elements.particular.players.Player;
 import elements.particular.particles.Particles;
 
 public class Explosion implements Poolable {

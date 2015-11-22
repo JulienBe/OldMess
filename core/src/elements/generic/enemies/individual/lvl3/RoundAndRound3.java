@@ -19,4 +19,8 @@ public class RoundAndRound3 extends RoundAndRound {
 		shotInterval = AbstractShot.interval(this, 12, 1.5f, shotInterval);
 	}
 	@Override	public void free() {				POOL.free(this);				}
+	@Override
+	public int getXp() {
+		return super.getXp() * 2;
+	}
 }

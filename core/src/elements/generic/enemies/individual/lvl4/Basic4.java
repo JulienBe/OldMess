@@ -14,8 +14,8 @@ import elements.particular.particles.individual.PrecalculatedParticles;
 public class Basic4 extends Basic3 {
 	
 	public static final Pool<Basic4> POOL = Pools.get(Basic4.class);
-	
-	@Override	
+
+  @Override
 	public void move() {
 		TMP_POS.set(0, DIMENSIONS.halfWidth).rotate(angle);
 		if (EndlessMode.alternate) 
@@ -26,5 +26,9 @@ public class Basic4 extends Basic3 {
 	@Override	public Animations getAnimation() {			return Animations.BASIC_ENEMY_GREEN;	}
 	@Override	public void free() {						POOL.free(this);						}
 	@Override	public int getColor() {						return GREEN;							}
+	@Override
+	public int getXp() {
+		return super.getXp() * 3;
+	}
 }
  

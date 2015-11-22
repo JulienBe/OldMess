@@ -18,15 +18,14 @@ public class Basic extends Enemy {
 	public static final Dimensions DIMENSIONS = Dimensions.BASIC;
 	public static final int OFFSET_SMOKE = (int) (DIMENSIONS.height * .75f);
 	public static final Pool<Basic> POOL = new Pool<Basic>(16) {		protected Basic newObject() {			return new Basic();		}	};
-	
-	@Override
-	public void init() {
-		Positionner.UP_WIDE.set(this);
-		dir.y = -getEnemyStats().getSpeed();
-		super.init();
-	}
-	
-	@Override
+
+  @Override
+  public void added(float x, float y) {
+    super.added(x, y);
+    dir.y = -getEnemyStats().getSpeed();
+  }
+
+  @Override
 	public void move() {
 		TMP_POS.set(0, DIMENSIONS.halfHeight);
 		if (EndlessMode.alternate)
@@ -38,6 +37,6 @@ public class Basic extends Enemy {
 	@Override	protected Sound getExplosionSound() {	return SoundMan.explosion6;			}
 	@Override	public EnemyStats getEnemyStats() {		return EnemyStats.BASIC;			}
 	@Override	public Dimensions getDimensions() {		return DIMENSIONS;					}
-	@Override	protected void free() {					POOL.free(this);					}
+	@Override	protected void free() {								POOL.free(this);					}
 
 }

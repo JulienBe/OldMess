@@ -1,7 +1,6 @@
 package menu.screens;
 
 import jeu.CSG;
-import jeu.Strings;
 import menu.tuto.OnClick;
 import menu.ui.Button;
 import behind.SoundMan;
@@ -9,9 +8,6 @@ import behind.SoundMan;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
-
-import elements.generic.weapons.player.ArmeAdd;
-import elements.particular.particles.Particles;
 
 public class Menu extends AbstractScreen {
 
@@ -30,12 +26,10 @@ public class Menu extends AbstractScreen {
 
 	public Menu(Game game) {
 		super(game);
-		Particles.initBackground();
 		setUpScreenElements();
 	}
 
 	public void setUpScreenElements() {
-		ArmeAdd.determinerCadenceTir();
 		temps = 0;
 		Gdx.input.setCatchBackKey(false);
 
@@ -76,14 +70,6 @@ public class Menu extends AbstractScreen {
 		ajout(new Button(EXIT, CSG.menuFont, BUTTON_WIDTH, BUTTON_HEIGHT, CSG.screenWidth / PADDING, (int) (CSG.height - (CSG.heightDiv10 * LIGNE_EXIT)), new OnClick() {
 			public void onClick() {
 				Gdx.app.exit();
-			}
-		}));
-		
-		ajout(new Button(Strings.TWITTER, CSG.menuFontSmall, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT / 2,
-                (int) (CSG.screenWidth - (CSG.fontsDimensions.getWidth(CSG.menuFontSmall, Strings.TWITTER) * 2) - PADDING * 3),
-                (int) (4 + CSG.fontsDimensions.getHeight(CSG.menuFontSmall, "T") * 2), new OnClick() {
-			public void onClick() {
-				CSG.talkToTheWorld.followTwitter();
 			}
 		}));
 		
