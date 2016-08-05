@@ -19,7 +19,7 @@ public final class AssetMan implements AssetErrorListener {
 
 	public static TextureRegion add, addShip, bomb, bombGrey, shield, stopBonus, stopBonusGrey, dust, debris, player, backgroundButton, shootingStar, red, smoke;
 	public static TextureRegion iconDefaultW, iconTW, iconFireballW, iconSpreadW, iconSunW, iconSpaceInvW, tWeapon, star, effect, addBullet, addShipShot, xp, planet;
-	public static TextureRegion playerFireLevel1;
+	public static TextureRegion playerFireLevel1, playerFireLevel1Propel, playerFireLevel1Hearth;
 	public final static AssetManager MAN = new AssetManager();
 	private TextureAtlas atlas;
 
@@ -100,6 +100,8 @@ public final class AssetMan implements AssetErrorListener {
 		iconFireballW = getTextureRegion("fireball80");
 
 		playerFireLevel1 = getTextureRegion("playerFire1");
+		playerFireLevel1Hearth = getTextureRegion("playerFireHearth");
+		playerFireLevel1Propel = getTextureRegion("playerFirePropel");
 	}
 
 	public static TextureRegion getTextureRegion(String string) {

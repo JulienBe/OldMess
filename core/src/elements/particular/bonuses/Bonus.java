@@ -94,7 +94,6 @@ public abstract class Bonus {
 		Bonus.XP_LIST.clear();
 		Bonus.TAKEN.clear();
         Bonus.LIST.clear();
-        Drone.resetStats();
         TimeStop.resetStats();
         Bomb.resetStats();
         Shield.resetStats();
@@ -110,7 +109,6 @@ public abstract class Bonus {
 		cptBonus += e.getBonusValue();
 		tmp = e.pos.x + e.getDimensions().halfWidth;
 		tmpY = e.pos.y + e.getDimensions().halfHeight;
-		Drone.mightAppear(tmp, tmpY);
 		TimeStop.mightAppear(tmp, tmpY);
 		Bomb.mightAppear(tmp, tmpY);
 		Shield.mightAppear(tmp, tmpY);
