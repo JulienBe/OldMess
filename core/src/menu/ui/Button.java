@@ -24,23 +24,19 @@ public class Button extends AbstractButton {
 	private float clickTime = 0, height, width;
 	private final float originalWidth, originalHeight;
 	
-	public Button(String s, BitmapFont font, int srcWidth, int srcHeight, int srcX, int srcY, OnClick onClick) {
-		this(s, font, srcWidth, srcHeight, srcX, srcY);
+	public Button(String s, BitmapFont font, int x, int y, int width, int height, OnClick onClick) {
+		this(s, font, x, y, width, height);
 		click = onClick;
 	}
 	
-	public Button(String s, boolean panneau, BitmapFont font, int srcWidth, int srcHeight, int srcX, int srcY) {
-		this(s, font, srcWidth, srcHeight, srcX, srcY);
-	}
-	
-	public Button(String s, BitmapFont font, float srcWidth, float srcHeight, float srcX, float srcY) {
+	public Button(String s, BitmapFont font, float x, float y, float width, float height) {
 		sprite = new Sprite();
-		sprite.setBounds(srcX, srcY, srcWidth, srcHeight);
-		this.originalHeight = srcHeight;
-		this.originalWidth = srcWidth;
+		sprite.setBounds(x, y, width, height);
+		this.originalHeight = height;
+		this.originalWidth = width;
 		this.font = font;
 		texte = s;
-		updateBorders(font, srcX, srcY, originalWidth, originalHeight);
+		updateBorders(font, x, y, originalWidth, originalHeight);
 	}
 
 	private void updateBorders(BitmapFont font, float x, float y, float originalWidth, float originalHeight) {

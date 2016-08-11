@@ -16,7 +16,7 @@ import com.badlogic.gdx.Input.Keys;
 import elements.particular.players.Player;
 import elements.particular.particles.Particles;
 
-public class MenuXP extends AbstractScreen{
+class MenuXP extends AbstractScreen{
 	
 	private Button boutonUpgrade, boutonCadence, boutonUndo;
 	private final Button boutonXP;
@@ -24,25 +24,25 @@ public class MenuXP extends AbstractScreen{
 	private static int prevNvArmeDeBase = CSG.profile.lvlFireball, prevNvArmeBalayage = CSG.profile.lvlSweepWeapon, prevNvArmeHantee = CSG.profile.lvlTWeapon, prevNvArmeTrois = CSG.profile.lvlPinkWeapon,
 			prevNvArmeSun = CSG.profile.lvlSunWeapon, prevVitesse = CSG.profile.dronesFirerate, prevXp = CSG.profile.xp;
 
-	public MenuXP(final Game game) {
+	MenuXP(final Game game) {
 		super(game);
 		Gdx.input.setCatchBackKey(true);
 		add(buttonBack);
 		// ** B O U T O N X P **
-		boutonXP = new Button(CSG.profile.xp + "xp", CSG.menuFont, BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, (CSG.screenWidth / 2) - Menu.BUTTON_WIDTH / 2, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * 2, new OnClick() {
+		boutonXP = new Button(CSG.profile.xp + "xp", CSG.menuFont, (CSG.screenWidth / 2) - Menu.BUTTON_WIDTH / 2, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * 2, BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, new OnClick() {
 			public void onClick() {			}
 		});
 		add(boutonXP);
-		// ** ** ** BOUTON WEAPON ** ** **
-		add(new Button(OTHER_WEAP, CSG.menuFont, BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, (CSG.screenWidth / 2) - Menu.BUTTON_WIDTH / 2, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * 4, new OnClick() {
+		// ** ** ** BUTTON WEAPON ** ** **
+		add(new Button(Strings.BUTTON_OTHER_WEAP, CSG.menuFont, (CSG.screenWidth / 2) - Menu.BUTTON_WIDTH / 2, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * 4, BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, new OnClick() {
 			public void onClick() {
 				Player.changeWeapon();
 				CSG.profilManager.persist();
-				updateTexteUpgrade();
+				updateTxtUpgrade();
 			}
 		}));
-		// ** ** ** BOUTON UPGRADE ** **
-		boutonUpgrade = new Button("", CSG.menuFontSmall, SMALL_BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, CSG.screenWidth - (CSG.screenWidth / Menu.PADDING) - Menu.SMALL_BUTTON_WIDTH, Menu.BUTTON_HEIGHT, new OnClick() {
+		// ** ** ** BUTTON UPGRADE ** **
+		boutonUpgrade = new Button("", CSG.menuFontSmall, CSG.screenWidth - (CSG.screenWidth / Menu.PADDING) - Menu.SMALL_BUTTON_WIDTH, Menu.BUTTON_HEIGHT, SMALL_BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, new OnClick() {
 			public void onClick() {
 				if (CSG.profile.getCoutUpArme() <= CSG.profile.xp) {
 					save();
@@ -53,9 +53,9 @@ public class MenuXP extends AbstractScreen{
 			}
 		});
 		add(boutonUpgrade);
-		updateTexteUpgrade();
-		// ** ** ** BOUTON FIRERATE ** ** **
-		boutonCadence = new Button("", CSG.menuFontSmall, Menu.SMALL_BUTTON_WIDTH, Menu.SMALL_BUTTON_HEIGHT, CSG.screenWidth - (CSG.screenWidth / Menu.PADDING) - Menu.SMALL_BUTTON_WIDTH, Menu.BUTTON_HEIGHT * 3, new OnClick() {
+		updateTxtUpgrade();
+		// ** ** ** BUTTON FIRERATE ** ** **
+		boutonCadence = new Button("", CSG.menuFontSmall, CSG.screenWidth - (CSG.screenWidth / Menu.PADDING) - Menu.SMALL_BUTTON_WIDTH, Menu.BUTTON_HEIGHT * 3, Menu.SMALL_BUTTON_WIDTH, Menu.SMALL_BUTTON_HEIGHT, new OnClick() {
 			public void onClick() {
 				if (CSG.profile.getCoutCadenceAdd() <= CSG.profile.xp) {
 					save();
@@ -65,7 +65,7 @@ public class MenuXP extends AbstractScreen{
 					CSG.talkToTheWorld.buyXp();
 			}
 		});
-		updateTexteCadence();
+		updateTxtCadence();
 		add(boutonCadence);
 		Player player = new Pfire1();
 		Player.POS.set((CSG.screenWidth / 2) - player.halfWidth, CSG.height / 3);
@@ -94,10 +94,10 @@ public class MenuXP extends AbstractScreen{
 		CSG.profilManager.persist();
 	}
 	
-	private void ajoutUndo() {
+	private void addUndo() {
 		if (boutonUndo == null) {
 			CSG.talkToTheWorld.unlockAchievementGPGS(Strings.ACH_FAVORITE_SHOP);
-			boutonUndo = new Button("UNDO", CSG.menuFontSmall, Menu.SMALL_BUTTON_WIDTH, Menu.SMALL_BUTTON_HEIGHT, CSG.screenWidth / Menu.PADDING, Menu.BUTTON_HEIGHT * 3, new OnClick()  {
+			boutonUndo = new Button("UNDO", CSG.menuFontSmall, CSG.screenWidth / Menu.PADDING, Menu.BUTTON_HEIGHT * 3, Menu.SMALL_BUTTON_WIDTH, Menu.SMALL_BUTTON_HEIGHT, new OnClick()  {
 				public void onClick() {		undo();		}
 			});
 			add(boutonUndo);
@@ -105,22 +105,22 @@ public class MenuXP extends AbstractScreen{
 			add(boutonUndo);
 	}
 
-	private void updateTexteCadence() {
+	private void updateTxtCadence() {
 		boutonCadence.setTexte("Drones (" + CSG.profile.getCoutCadenceAdd() + ")");
 	}
 
-	private void updateTexteXp() {
+	private void updateTxtXp() {
 		boutonXP.setTexte(CSG.profile.xp + "xp");
 	}
 	
-	protected void afterUpdate() {
+	private void afterUpdate() {
 		CSG.profilManager.persist();
-		updateTexteUpgrade();
-		updateTexteXp();
-		ajoutUndo();
+		updateTxtUpgrade();
+		updateTxtXp();
+		addUndo();
 	}
 
-	protected void save() {
+	private void save() {
 		prevXp = CSG.profile.xp;
 		prevNvArmeSun = CSG.profile.lvlSunWeapon;
 		prevVitesse = CSG.profile.dronesFirerate;
@@ -128,12 +128,12 @@ public class MenuXP extends AbstractScreen{
 		prevNvArmeDeBase = CSG.profile.lvlFireball;
 		prevNvArmeTrois = CSG.profile.lvlPinkWeapon;
 		prevNvArmeBalayage = CSG.profile.lvlSweepWeapon;
-		updateTexteUpgrade();
-		updateTexteCadence();
-		updateTexteXp();
+		updateTxtUpgrade();
+		updateTxtCadence();
+		updateTxtXp();
 	}
 
-	protected void undo() {
+	private void undo() {
 		CSG.profile.lvlSweepWeapon = prevNvArmeBalayage;
 		CSG.profile.lvlPinkWeapon = prevNvArmeTrois;
 		CSG.profile.lvlFireball = prevNvArmeDeBase;
@@ -141,13 +141,13 @@ public class MenuXP extends AbstractScreen{
 		CSG.profile.lvlSunWeapon = prevNvArmeSun;
 		CSG.profile.dronesFirerate = prevVitesse;
 		CSG.profile.xp = prevXp;
-		updateTexteUpgrade();
-		updateTexteCadence();
-		updateTexteXp();
+		updateTxtUpgrade();
+		updateTxtCadence();
+		updateTxtXp();
 		buttons.removeValue(boutonUndo, true);
 	}
 
-	private void updateTexteUpgrade() {
+	private void updateTxtUpgrade() {
 		if (CSG.profile.getArmeSelectionnee().nv() >= Profil.LVL_MAX)		boutonUpgrade.setTexte("LEVEL MAX");
 		else 																boutonUpgrade.setTexte("Weapon (" + CSG.profile.getCoutUpArme() + ")");
 	}

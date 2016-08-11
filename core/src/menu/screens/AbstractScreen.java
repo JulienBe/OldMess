@@ -60,7 +60,7 @@ public abstract class AbstractScreen implements Screen {
 		CSG.initBloom();
 		cam.position.set(CSG.screenWidth /2, CSG.height/2, 0);
 		
-		buttonBack = new Button(Strings.BUTTON_BACK, CSG.menuFontSmall, SMALL_BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, CSG.screenWidth / PADDING, BUTTON_HEIGHT, new OnClick() {
+		buttonBack = new Button(Strings.BUTTON_BACK, CSG.menuFontSmall, CSG.screenWidth / PADDING, BUTTON_HEIGHT, SMALL_BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, new OnClick() {
 			public void onClick() {
 				changeMenu(new Menu(game));
 				CSG.profilManager.persist();

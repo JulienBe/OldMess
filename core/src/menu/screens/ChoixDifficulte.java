@@ -38,21 +38,21 @@ public class ChoixDifficulte extends AbstractScreen {
 	public void setUpScreenElements() {
 		add(buttonBack);
 		// ** ** ** PIECE OF CAKE ** ** **
-		final Button lvl1 = new Button(Strings.LVL1, CSG.menuFont, BUTTON_WIDTH, BUTTON_HEIGHT, CSG.screenWidth / PADDING, CSG.height - BUTTON_HEIGHT * 5, new OnClick() {
+		final Button lvl1 = new Button(Strings.LVL1, CSG.menuFont, CSG.screenWidth / PADDING, CSG.height - BUTTON_HEIGHT * 5, BUTTON_WIDTH, BUTTON_HEIGHT, new OnClick() {
 			public void onClick() {
 				changeMenu(new EndlessMode(game, CSG.batch, 1, cheat));
 			}
 		});
 		add(lvl1);
 		// ** ** ** LET'S ROCK ** ** **
-		final Button lvl2 = new Button(Strings.LVL2, CSG.menuFont, BUTTON_WIDTH, BUTTON_HEIGHT, CSG.screenWidth / PADDING, (int) (CSG.height - BUTTON_HEIGHT * 7.5f), new OnClick() {
+		final Button lvl2 = new Button(Strings.LVL2, CSG.menuFont, CSG.screenWidth / PADDING, (int) (CSG.height - BUTTON_HEIGHT * 7.5f), BUTTON_WIDTH, BUTTON_HEIGHT, new OnClick() {
 			public void onClick() {
 				changeMenu(new EndlessMode(game, CSG.batch, 2, cheat));
 			}
 		});
 		add(lvl2);
 		// ** ** ** COME GET SOME ** ** **
-		final Button lvl3 = new Button(Strings.LVL3, CSG.menuFont, BUTTON_WIDTH, BUTTON_HEIGHT, CSG.screenWidth / PADDING, CSG.height - BUTTON_HEIGHT * 10, new OnClick() {
+		final Button lvl3 = new Button(Strings.LVL3, CSG.menuFont, CSG.screenWidth / PADDING, CSG.height - BUTTON_HEIGHT * 10, BUTTON_WIDTH, BUTTON_HEIGHT, new OnClick() {
 			public void onClick() {
 				changeMenu(new EndlessMode(game, CSG.batch, 3, cheat));
 			}
@@ -61,13 +61,13 @@ public class ChoixDifficulte extends AbstractScreen {
 		if (Gdx.app.getVersion() != 0) {
 			CSG.talkToTheWorld.showAds(true);
 		}
-		final Button lvl4 = new Button(Strings.LVL4, CSG.menuFont, BUTTON_WIDTH, BUTTON_HEIGHT, CSG.screenWidth / PADDING, (int) (CSG.height - BUTTON_HEIGHT * 12.5f), new OnClick() {
+		final Button lvl4 = new Button(Strings.LVL4, CSG.menuFont, CSG.screenWidth / PADDING, (int) (CSG.height - BUTTON_HEIGHT * 12.5f), BUTTON_WIDTH, BUTTON_HEIGHT, new OnClick() {
 			public void onClick() {
 				changeMenu(new EndlessMode(game, CSG.batch, 4, cheat));
 			}
 		});
 		add(lvl4);
-		final Button chooseWeapon = new Button(Strings.CHOOSE_WEAPON, CSG.menuFont, BUTTON_WIDTH, BUTTON_HEIGHT, CSG.screenWidth / PADDING, (int) (CSG.height - BUTTON_HEIGHT * 15.5f), new OnClick() {
+		final Button chooseWeapon = new Button(Strings.CHOOSE_WEAPON, CSG.menuFont, CSG.screenWidth / PADDING, (int) (CSG.height - BUTTON_HEIGHT * 15.5f), BUTTON_WIDTH, BUTTON_HEIGHT, new OnClick() {
 			public void onClick() {
 			}
 		});
