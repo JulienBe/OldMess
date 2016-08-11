@@ -36,28 +36,28 @@ public class ChoixDifficulte extends AbstractScreen {
 	}
 
 	public void setUpScreenElements() {
-		ajout(buttonBack);
+		add(buttonBack);
 		// ** ** ** PIECE OF CAKE ** ** **
 		final Button lvl1 = new Button(Strings.LVL1, CSG.menuFont, BUTTON_WIDTH, BUTTON_HEIGHT, CSG.screenWidth / PADDING, CSG.height - BUTTON_HEIGHT * 5, new OnClick() {
 			public void onClick() {
 				changeMenu(new EndlessMode(game, CSG.batch, 1, cheat));
 			}
 		});
-		ajout(lvl1);
+		add(lvl1);
 		// ** ** ** LET'S ROCK ** ** **
 		final Button lvl2 = new Button(Strings.LVL2, CSG.menuFont, BUTTON_WIDTH, BUTTON_HEIGHT, CSG.screenWidth / PADDING, (int) (CSG.height - BUTTON_HEIGHT * 7.5f), new OnClick() {
 			public void onClick() {
 				changeMenu(new EndlessMode(game, CSG.batch, 2, cheat));
 			}
 		});
-		ajout(lvl2);
+		add(lvl2);
 		// ** ** ** COME GET SOME ** ** **
 		final Button lvl3 = new Button(Strings.LVL3, CSG.menuFont, BUTTON_WIDTH, BUTTON_HEIGHT, CSG.screenWidth / PADDING, CSG.height - BUTTON_HEIGHT * 10, new OnClick() {
 			public void onClick() {
 				changeMenu(new EndlessMode(game, CSG.batch, 3, cheat));
 			}
 		});
-		ajout(lvl3);
+		add(lvl3);
 		if (Gdx.app.getVersion() != 0) {
 			CSG.talkToTheWorld.showAds(true);
 		}
@@ -66,12 +66,12 @@ public class ChoixDifficulte extends AbstractScreen {
 				changeMenu(new EndlessMode(game, CSG.batch, 4, cheat));
 			}
 		});
-		ajout(lvl4);
+		add(lvl4);
 		final Button chooseWeapon = new Button(Strings.CHOOSE_WEAPON, CSG.menuFont, BUTTON_WIDTH, BUTTON_HEIGHT, CSG.screenWidth / PADDING, (int) (CSG.height - BUTTON_HEIGHT * 15.5f), new OnClick() {
 			public void onClick() {
 			}
 		});
-		ajout(chooseWeapon);
+		add(chooseWeapon);
 		weaponButtons.add(new WeaponButton(AssetMan.iconDefaultW, 0, PinkWeapon.LABEL, Y_WEAPON));
 		weaponButtons.add(new WeaponButton(AssetMan.iconFireballW, 1, elements.generic.weapons.player.Fireball.LABEL, Y_WEAPON));
 		weaponButtons.add(new WeaponButton(AssetMan.iconSpreadW, 2, BlueSweepWeapon.LABEL, Y_WEAPON));
@@ -97,7 +97,7 @@ public class ChoixDifficulte extends AbstractScreen {
 		EndlessMode.perf = EndlessMode.fps / 6;
 		if (Gdx.input.isKeyPressed(Keys.BACK) || Gdx.input.isKeyPressed(Keys.ESCAPE)) 
 			keyBackPressed();
-		etapeCode = detectiopnKonamiCode(etapeCode);
+		etapeCode = detectKonamiCode(etapeCode);
 		if (etapeCode == 8) {
 			SoundMan.playBruitage(SoundMan.bigExplosion);
 			cheat = CSG.BEGIN_70K;

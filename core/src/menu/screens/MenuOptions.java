@@ -23,22 +23,22 @@ public class MenuOptions extends AbstractScreen {
 		super(game);
 		
 		Gdx.input.setCatchBackKey(true);
-		ajout(buttonBack);
+		add(buttonBack);
 		// ************************ A R M E S ****************************************************************
 
 		// ************************ B R U I T A G E S ********************************************************
 		final Button bruit = new Button(BRUITAGE_VOL + (int) (CSG.profile.effectsVolume * 10), CSG.menuFontSmall, SMALL_BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, (CSG.screenWidth / 2) - Menu.SMALL_BUTTON_WIDTH / 2, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE2, new OnClick() {
 			public void onClick() {}
 		});
-		ajout(bruit);
-		ajout(new Button(MOINS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth / Menu.PADDING, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE2 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
+		add(bruit);
+		add(new Button(MOINS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth / Menu.PADDING, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE2 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
 			public void onClick() {
 				CSG.profile.diminuerVolumeBruitage();
 				bruit.setTexte(BRUITAGE_VOL + (int) (CSG.profile.effectsVolume * 10));
 				SoundMan.playBruitage(SoundMan.shotRocket);
 			}
 		}));
-		ajout(new Button(PLUS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth - (CSG.screenWidth / Menu.PADDING) - Menu.MINI_BOUTON_WIDTH, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE2 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
+		add(new Button(PLUS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth - (CSG.screenWidth / Menu.PADDING) - Menu.MINI_BOUTON_WIDTH, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE2 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
 			public void onClick() {
 				CSG.profile.augmenterVolumeBruitage();
 				bruit.setTexte(BRUITAGE_VOL + (int) (CSG.profile.effectsVolume * 10));
@@ -50,8 +50,8 @@ public class MenuOptions extends AbstractScreen {
 			public void onClick() {
 			}
 		});
-		ajout(musique);
-		ajout(new Button(MOINS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth / Menu.PADDING, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE3 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
+		add(musique);
+		add(new Button(MOINS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth / Menu.PADDING, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE3 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
 			public void onClick() {
 				CSG.profile.diminuerVolumeMusique();
 				musique.setTexte(MUSIQUE_VOL + (int) (CSG.profile.musicVolume * 10));
@@ -61,7 +61,7 @@ public class MenuOptions extends AbstractScreen {
 				}
 			}
 		}));
-		ajout(new Button(PLUS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth - (CSG.screenWidth / Menu.PADDING) - Menu.MINI_BOUTON_WIDTH, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE3 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
+		add(new Button(PLUS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth - (CSG.screenWidth / Menu.PADDING) - Menu.MINI_BOUTON_WIDTH, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE3 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
 			public void onClick() {
 				CSG.profile.augmenterVolumeMusique();
 				musique.setTexte(MUSIQUE_VOL + (int) (CSG.profile.musicVolume * 10));
@@ -73,16 +73,16 @@ public class MenuOptions extends AbstractScreen {
 		String bloomTxt = "BLOOM OFF";
 		bloomTxt = "BLOOM ON";
 		final Button bloom = new Button(bloomTxt, true, CSG.menuFontSmall, SMALL_BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, (CSG.screenWidth / 2) - Menu.SMALL_BUTTON_WIDTH / 2, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE4);
-		ajout(bloom);
+		add(bloom);
 
-		ajout(new Button(MOINS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth / Menu.PADDING, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE4 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
+		add(new Button(MOINS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth / Menu.PADDING, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE4 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
 			public void onClick() {
 				CSG.profile.downBloom();
 				majBloom();
 				bloom.setTexte(INTENSITY + CSG.profile.getBloomString());
 			}
 		}));
-		ajout(new Button(PLUS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth - (CSG.screenWidth / Menu.PADDING) - Menu.MINI_BOUTON_WIDTH, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE4 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
+		add(new Button(PLUS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth - (CSG.screenWidth / Menu.PADDING) - Menu.MINI_BOUTON_WIDTH, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE4 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
 			public void onClick() {
 				CSG.initBloom();
 				CSG.profile.upBloom();
@@ -105,7 +105,7 @@ public class MenuOptions extends AbstractScreen {
 					bonus.setTexte("Automatic bonus");
 			}
 		});
-		ajout(bonus);
+		add(bonus);
 		String screenshaketxt = "Screenshake : on";
 		if (CSG.profile.screenshake == false)
 			screenshaketxt = "Screenshake : off";
@@ -120,7 +120,7 @@ public class MenuOptions extends AbstractScreen {
 					screenshake.setTexte("Screenshake : off");
 			}
 		});
-		ajout(screenshake);
+		add(screenshake);
 		
 		// sensitivity
 		
@@ -128,14 +128,14 @@ public class MenuOptions extends AbstractScreen {
 			public void onClick() {
 			}
 		});
-		ajout(sensitivity);
-		ajout(new Button(MOINS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth / Menu.PADDING, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE7 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
+		add(sensitivity);
+		add(new Button(MOINS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth / Menu.PADDING, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE7 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
 			public void onClick() {
 				CSG.profile.downSensitivity();
 				sensitivity.setTexte(Strings.SENSITIVITY + CSG.profile.getSensitivityString());
 			}
 		}));
-		ajout(new Button(PLUS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth - (CSG.screenWidth / Menu.PADDING) - Menu.MINI_BOUTON_WIDTH, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE7 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
+		add(new Button(PLUS, CSG.menuFont, MINI_BOUTON_WIDTH, MINI_BOUTON_HEIGHT, CSG.screenWidth - (CSG.screenWidth / Menu.PADDING) - Menu.MINI_BOUTON_WIDTH, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * LINE7 + Menu.MINI_BOUTON_HEIGHT / 2, new OnClick() {
 			public void onClick() {
 				CSG.profile.upSensitivity();
 				sensitivity.setTexte(Strings.SENSITIVITY + CSG.profile.getSensitivityString());

@@ -27,14 +27,14 @@ public class MenuXP extends AbstractScreen{
 	public MenuXP(final Game game) {
 		super(game);
 		Gdx.input.setCatchBackKey(true);
-		ajout(buttonBack);
+		add(buttonBack);
 		// ** B O U T O N X P **
 		boutonXP = new Button(CSG.profile.xp + "xp", CSG.menuFont, BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, (CSG.screenWidth / 2) - Menu.BUTTON_WIDTH / 2, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * 2, new OnClick() {
 			public void onClick() {			}
 		});
-		ajout(boutonXP);
+		add(boutonXP);
 		// ** ** ** BOUTON WEAPON ** ** **
-		ajout(new Button(OTHER_WEAP, CSG.menuFont, BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, (CSG.screenWidth / 2) - Menu.BUTTON_WIDTH / 2, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * 4, new OnClick() {
+		add(new Button(OTHER_WEAP, CSG.menuFont, BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, (CSG.screenWidth / 2) - Menu.BUTTON_WIDTH / 2, -Menu.yOffset + CSG.height - Menu.BUTTON_HEIGHT * 4, new OnClick() {
 			public void onClick() {
 				Player.changeWeapon();
 				CSG.profilManager.persist();
@@ -52,7 +52,7 @@ public class MenuXP extends AbstractScreen{
 					CSG.talkToTheWorld.buyXp();
 			}
 		});
-		ajout(boutonUpgrade);
+		add(boutonUpgrade);
 		updateTexteUpgrade();
 		// ** ** ** BOUTON FIRERATE ** ** **
 		boutonCadence = new Button("", CSG.menuFontSmall, Menu.SMALL_BUTTON_WIDTH, Menu.SMALL_BUTTON_HEIGHT, CSG.screenWidth - (CSG.screenWidth / Menu.PADDING) - Menu.SMALL_BUTTON_WIDTH, Menu.BUTTON_HEIGHT * 3, new OnClick() {
@@ -66,7 +66,7 @@ public class MenuXP extends AbstractScreen{
 			}
 		});
 		updateTexteCadence();
-		ajout(boutonCadence);
+		add(boutonCadence);
 		Player player = new Pfire1();
 		Player.POS.set((CSG.screenWidth / 2) - player.halfWidth, CSG.height / 3);
 		setRenderBackground(false);
@@ -100,9 +100,9 @@ public class MenuXP extends AbstractScreen{
 			boutonUndo = new Button("UNDO", CSG.menuFontSmall, Menu.SMALL_BUTTON_WIDTH, Menu.SMALL_BUTTON_HEIGHT, CSG.screenWidth / Menu.PADDING, Menu.BUTTON_HEIGHT * 3, new OnClick()  {
 				public void onClick() {		undo();		}
 			});
-			ajout(boutonUndo);
+			add(boutonUndo);
 		} else 
-			ajout(boutonUndo);
+			add(boutonUndo);
 	}
 
 	private void updateTexteCadence() {

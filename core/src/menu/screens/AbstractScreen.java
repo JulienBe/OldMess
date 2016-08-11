@@ -18,6 +18,7 @@ package menu.screens;
 
 import jeu.CSG;
 import jeu.Physic;
+import jeu.Strings;
 import jeu.mode.EndlessMode;
 import menu.Credits;
 import menu.BasicMenu;
@@ -40,7 +41,6 @@ public abstract class AbstractScreen implements Screen {
 	protected Game game;
 	protected Array<Button> buttons = new Array<Button>();
 	private Credits credits;
-	public static final String PLAY = "Play!", SHIP = "Weapon", OPTION = "Options", HIGHSCORE = "Highscores", EXIT = "Exit", BACK = "BACK", WEAPON_VOL = "WEAPON VOL  ", MOINS = "-", PLUS = "+", BRUITAGE_VOL = "EFFECTS VOL  ", MUSIQUE_VOL = "MUSIC VOL  ", INTENSITY = "INTENSITY : ", OTHER_WEAP = "Next weapon", TUTO = "Tutorial" , ACHIEVEMENT = "Achievements", SUPPORT_US = "Support us !";
 	public final static int PADDING = 11, BUTTON_WIDTH = (CSG.screenWidth / PADDING) * 9, BUTTON_HEIGHT = CSG.height / 25;
 	public final static int BUTTON_HALF_WIDTH = BUTTON_WIDTH / 2, BUTTON_HALF_HEIGHT = BUTTON_HEIGHT / 2;
 	public final static int SMALL_BUTTON_WIDTH = (CSG.screenWidth / PADDING) * 4, SMALL_BUTTON_HEIGHT = CSG.height / 18;
@@ -60,7 +60,7 @@ public abstract class AbstractScreen implements Screen {
 		CSG.initBloom();
 		cam.position.set(CSG.screenWidth /2, CSG.height/2, 0);
 		
-		buttonBack = new Button(BACK, CSG.menuFontSmall, SMALL_BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, CSG.screenWidth / PADDING, BUTTON_HEIGHT, new OnClick() {
+		buttonBack = new Button(Strings.BUTTON_BACK, CSG.menuFontSmall, SMALL_BUTTON_WIDTH, SMALL_BUTTON_HEIGHT, CSG.screenWidth / PADDING, BUTTON_HEIGHT, new OnClick() {
 			public void onClick() {
 				changeMenu(new Menu(game));
 				CSG.profilManager.persist();
@@ -74,7 +74,7 @@ public abstract class AbstractScreen implements Screen {
 		this.renderBackground = renderBackground;
 	}
 	
-	protected void ajout(Button bouton) {
+	protected void add(Button bouton) {
 		buttons.add(bouton);
 	}
 	
@@ -148,14 +148,7 @@ public abstract class AbstractScreen implements Screen {
 		game.setScreen(s);
 	}
 	
-	/**
-	 * Il a besoin du batch pour afficher le jeu background en cas de code
-	 * valide
-	 * 
-	 * @param batch
-	 * @return 
-	 */
-	protected int detectiopnKonamiCode(int etapeCode) {
+	protected int detectKonamiCode(int etapeCode) {
 		switch (etapeCode) {
 		case 0:
 		case 1:
