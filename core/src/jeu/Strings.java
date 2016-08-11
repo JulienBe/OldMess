@@ -18,7 +18,8 @@ public class Strings {
             BUTTON_OTHER_WEAP = "Next weapon",
             BUTTON_TUTO = "Tutorial",
             BUTTON_ACHIEVEMENT = "Achievements",
-            BUTTON_SUPPORT_US = "Support us !";
+            BUTTON_SUPPORT_US = "Support us !",
+            BUTTON_CREATE_ENEMIES = "Create enemies";
 
     public static final String ADVICE3 = "USE YOUR POINTS TO UPGRADE YOUR SHIP",
             ADVICE4 = "USE THE BOMB TO CLEAR THE PATH",
