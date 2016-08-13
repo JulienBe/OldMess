@@ -1,18 +1,19 @@
 package menu;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.utils.Array;
+import menu.tuto.OnClick;
 import menu.ui.UiParticle;
 
 /**
  * Created by julein on 12/08/16.
  */
-public class StageButton extends Actor {
+public class MyButton extends Actor {
 
     protected final Array<UiParticle> particles = new Array<UiParticle>();
 
-    public StageButton(float x, float y, float width, float height) {
+    public MyButton(float x, float y, float width, float height, final OnClick onClick) {
         x = alignWithParticle(x);
         y = alignWithParticle(y);
         width = alignWithParticle(width);
@@ -22,6 +23,12 @@ public class StageButton extends Actor {
         verticalBarre(x + width, y + height, height, -1);
         horizontalBarre(x + width, y, width, -1);
         verticalBarre(x, y, height, 1);
+        addListener(new InputListener() {
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                onClick.onClick();
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
     }
 
     private float alignWithParticle(float f) {
@@ -52,4 +59,5 @@ public class StageButton extends Actor {
         for (int i = 0; i <= nbrBarre; i++)
             particles.add(UiParticle.POOL.obtain().init(x + UiParticle.HEIGHT * i * dir, y));
     }
+
 }
