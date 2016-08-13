@@ -50,16 +50,17 @@ public class Button extends AbstractButton {
 	}
 
 	private void setBarres(float x, float y) {
+		UiParticle.newElement();
 		barres.clear();
 		// top 
-		horizontalBarre(x, y + height - Barre.HEIGHT, width + Barre.HEIGHT);
+			horizontalBarre(x, y + height - UiParticle.HEIGHT, width + UiParticle.HEIGHT);
 		// bottom
-		horizontalBarre(x, y, width + Barre.HEIGHT);
+		horizontalBarre(x, y, width + UiParticle.HEIGHT);
 		// left
-		verticalBarre(x - Barre.HALF_HEIGHT, y, height);
-		verticalBarre(x + width + Barre.HEIGHT, y, height);
-		Barre.nbr = 0;
-		this.x = x - Barre.HALF_HEIGHT;
+		verticalBarre(x - UiParticle.HALF_HEIGHT, y, height);
+		verticalBarre(x + width + UiParticle.HEIGHT, y, height);
+		UiParticle.nbr = 0;
+		this.x = x - UiParticle.HALF_HEIGHT;
 		this.y = y;
 	}
 
@@ -72,8 +73,8 @@ public class Button extends AbstractButton {
 
 		font.draw(batch, texte, getX(),	getY());
 		
-		for (Barre b : barres)
-			b.draw(batch);
+		for (UiParticle b : barres)
+			b.draw(batch, barres.size);
 		
 		if (Gdx.input.justTouched() && Physic.pointIn(sprite)) {
 			impulse(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
@@ -86,7 +87,7 @@ public class Button extends AbstractButton {
 	private void impulse(int x, int y) {
 		tmpTouched.x = x;
 		tmpTouched.y = y;
-		for (Barre b : barres)
+		for (UiParticle b : barres)
 			b.impulse(tmpTouched);
 	}
 

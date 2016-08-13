@@ -30,20 +30,20 @@ public class WeaponButton extends AbstractButton {
 		this.label = label;
 		setSelected(label);
 		this.y = y;
-		this.x = ((num * width) + (padding * (num+1))) + Barre.HALF_HEIGHT;
+		this.x = ((num * width) + (padding * (num+1))) + UiParticle.HALF_HEIGHT;
 		setBarres();
 	}
 
 	private void setBarres() {
 		barres.clear();
 		// top 
-		horizontalBarre(x, y + height - Barre.HEIGHT, width - Barre.HEIGHT);
+		horizontalBarre(x, y + height - UiParticle.HEIGHT, width - UiParticle.HEIGHT);
 		// bottom
-		horizontalBarre(x, y, width - Barre.HEIGHT);
+		horizontalBarre(x, y, width - UiParticle.HEIGHT);
 		// left
-		verticalBarre(x - Barre.HALF_HEIGHT, y, height);
-		verticalBarre(x + width - Barre.HEIGHT, y, height);
-		Barre.nbr = 0;
+		verticalBarre(x - UiParticle.HALF_HEIGHT, y, height);
+		verticalBarre(x + width - UiParticle.HEIGHT, y, height);
+		UiParticle.nbr = 0;
 	}
 	
 	public void setSelected(String label) {
@@ -59,8 +59,8 @@ public class WeaponButton extends AbstractButton {
 	public void draw(SpriteBatch batch, Player player) {
 		batch.setColor(CSG.gm.palette().black);
 		batch.draw(AssetMan.backgroundButton, x, y, width, heightBackground);
-		for (Barre b : barres)
-			b.draw(batch);
+		for (UiParticle b : barres)
+			b.draw(batch, barres.size);
 		float offsetShip = (width - player.width)/2;
 		if (selected) {
 			batch.setColor(CSG.gm.palette().white);
