@@ -12,7 +12,7 @@ import jeu.CSG;
  */
 public class BaseStage implements Screen {
 
-    protected final Stage stage = new Stage(new ExtendViewport(CSG.height, CSG.screenWidth));
+    protected final Stage stage = new Stage(new ExtendViewport(CSG.height, CSG.screenWidth), CSG.batch);
 
     @Override
     public void show() {

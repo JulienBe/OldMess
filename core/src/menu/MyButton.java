@@ -23,12 +23,21 @@ public class MyButton extends Actor {
         verticalBarre(x + width, y + height, height, -1);
         horizontalBarre(x + width, y, width, -1);
         verticalBarre(x, y, height, 1);
+        setOnClick(onClick);
+    }
+
+    protected void setOnClick(final OnClick onClick) {
+        clearListeners();
         addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 onClick.onClick();
+                touched();
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
+    }
+
+    protected void touched() {
     }
 
     private float alignWithParticle(float f) {
