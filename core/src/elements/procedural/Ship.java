@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import jeu.CSG;
 
@@ -15,6 +16,7 @@ import jeu.CSG;
 public class Ship {
     private final Grid grid;
     private ShipRenderer renderer = new ShipRenderer();
+    private float rotation = 0;
 
     public Ship(Grid grid) {
         this.grid = grid;
@@ -32,7 +34,7 @@ public class Ship {
         return grid.height();
     }
 
-    public Texture getTexture() {
+    public TextureRegion getTexture() {
         FrameBuffer frameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, height(), width(), false);
         frameBuffer.begin();
         Gdx.gl.glClearColor(0, 0, 0, 0);
@@ -52,6 +54,15 @@ public class Ship {
         Texture texture = frameBuffer.getColorBufferTexture();
         texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
 
-        return texture;
+        return new TextureRegion(texture);
+    }
+
+    public float rotation() {
+        return rotation;
+    }
+
+    public void rotate(int i) {
+        rotation += i;
+        rotation %= 360;
     }
 }
