@@ -39,7 +39,7 @@ public abstract class EnemyWeapon extends Weapon {
 	}
 
 //	public boolean testCollsionAdds() {
-//		return Physic.isAddTouched(pos, getDimensions().width, getDimensions().height);
+//		return Physic.isAddTouched(pos, getDimensions().height, getDimensions().height);
 //	}
 	
 	public void init(Vector2 position, float halfWidth, float demiHauteur, float modifVitesse) {

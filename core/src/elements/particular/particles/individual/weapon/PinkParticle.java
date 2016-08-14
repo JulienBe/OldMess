@@ -39,7 +39,7 @@ public final class PinkParticle implements Poolable {
 		
 		for (final PinkParticle p : pinkParticles) {
 //				batch.setColor(PrecalculatedParticles.colorsPinkWeapon[p.index]);
-//				batch.draw(AssetMan.dust, p.x, p.y, width, width);
+//				batch.draw(AssetMan.dust, p.x, p.y, height, height);
 			
 			batch.setColor(colors[CSG.R.nextInt(MAX_LENGTH)]);
 			batch.draw(AssetMan.dust, p.x - Stats.U, p.y - Stats.U, Stats.U2, Stats.U2);

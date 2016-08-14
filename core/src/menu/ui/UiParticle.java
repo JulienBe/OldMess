@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.Pool;
 import com.badlogic.gdx.utils.Pool.Poolable;
 
 public class UiParticle implements Poolable {
-	public static final float HEIGHT = Stats.PIXEL * 2, HALF_HEIGHT = HEIGHT / 2;
+	public static final float HEIGHT = Stats.PIXEL, HALF_HEIGHT = HEIGHT / 2;
 	public static final Pool<UiParticle> POOL = new Pool<UiParticle>() {
 		@Override
 		protected UiParticle newObject() {

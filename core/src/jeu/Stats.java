@@ -1,13 +1,17 @@
 package jeu;
 
 
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+
 public class Stats {
-	
+
+	public static final Label.LabelStyle MENU_STYLE = new Label.LabelStyle(CSG.menuFont, CSG.menuFont.getColor());
 	// 0.507cm 20 sur s3
 	public static final float U = (CSG.height + CSG.screenWidth) / 115f, U2 = U * 2, U3 = U * 3, U4 = U * 4, U5 = U * 5, U6 = U * 6, U8 = U * 8, U10 = U * 10,
 			U12 = U * 12, U15 = U * 15, U20 = U * 20, U50 = U * 50, U90 = U * 90, U270 = U * 270, u = U / 2, uDiv75 = u / 75, uDiv450 = u / 450, uDiv2 = u / 2, uDiv4 = u / 4, uSur8 = u / 8,
 			IMPACT = U / 240, SCORE = 1, SCREEN_HEIGHT_DIV_100 = CSG.height / 100, WIDTH_DIV_10 = CSG.screenWidth / 10, WIDTH_PLUS_MARGIN = CSG.screenWidth * 1.1f, SCREEN_HEIGHT_PLUS_MARGIN = CSG.height * 1.1f, U25 = U * 25, U22 = U * 22;
-	
+
+	public static final float PIXEL = (int) u;
 	public static final float[] MULTI_HP = {1, 1.4f, 1.85f, 2.4f}, MULTI_SPEED = {1, 1.1f, 1.2f, 1.4f};
 	public static final float[] MULTI_XP = {CSG.mulLvl1 * CSG.mulSCORE, CSG.mulLvl1 * CSG.mulSCORE * 1.1f, CSG.mulLvl3 * CSG.mulSCORE, CSG.mulLvl4 * CSG.mulSCORE};
 	

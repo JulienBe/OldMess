@@ -3,17 +3,18 @@ package elements.particular.particles.individual;
 import com.badlogic.gdx.utils.Array;
 
 import elements.generic.weapons.player.Fireball;
-import elements.particular.particles.Painters;
 import jeu.CSG;
 import jeu.Stats;
+import jeu.colors.Bunch;
+import jeu.colors.RandomishColor;
 
 public class PrecalculatedParticles {
 
-	public static final float INITIAL_WIDTH = (Stats.u), INITIAL_HALF_WIDTH = INITIAL_WIDTH / 2;
+	public static final float INITIAL_WIDTH = Stats.PIXEL, INITIAL_HALF_WIDTH = INITIAL_WIDTH / 2;
 	private static final float stepSparkles = 0.095f;
 	public static final float[] colorsRed = initAlphasRed(stepSparkles, 0, true), colorsBlue = initAlphasBlue(stepSparkles, 0, true), colorsYellowToGreen = initAlphasYellowToGreen(stepSparkles, 0, true);
 	public static final float[] colorsThruster = initAlphasThruster(stepSparkles, 0, true);
-	public static final float[] widths = initWidths(Stats.uDiv4, colorsRed.length, INITIAL_WIDTH);
+	public static final float[] widths = initWidths(Stats.uDiv4, Bunch.BLUE.length(), INITIAL_WIDTH);
 	public final static float[] widthsFireballParticules = initWidths(Stats.u, 0.75f, Fireball.DIMENSIONS.width);
 	public final static float[] halfWidthsFireballParticules = CSG.getDifferences(widthsFireballParticules);
 	public final static float[] colorsFireball = initColors(widthsFireballParticules.length, 1, 0.9f, 0);
@@ -21,9 +22,9 @@ public class PrecalculatedParticles {
 	public static final float[] halfWidths = CSG.getDifferences(widths);
 	public static final float[] dirY = initDirY(widths);
 	// not evolving
-	public static final float[] RANDDOM_REDS = getColors(colorsRed.length, Painters.RED), RANDDOM_BLUES = getColors(colorsRed.length, Painters.BLUE), RANDDOM_GREENS = getColors(colorsRed.length, Painters.GREEN);
+	public static final float[] RANDDOM_REDS = getColors(colorsRed.length, RandomishColor.RED), RANDDOM_BLUES = getColors(colorsRed.length, RandomishColor.BLUE), RANDDOM_GREENS = getColors(colorsRed.length, RandomishColor.GREEN);
 	
-	private static float[] getColors(int nb, Painters painter) {
+	private static float[] getColors(int nb, RandomishColor painter) {
 		float tmp[] = new float[nb];
 		for(int i = 0; i < nb; i++) {
 			tmp[i] = painter.colorGenerator.getColor();

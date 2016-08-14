@@ -29,7 +29,7 @@ import elements.particular.particles.individual.explosions.ExplosionImpactBullet
 import elements.particular.particles.individual.explosions.SparklesColorOverTime;
 import elements.particular.particles.individual.smoke.MovingSmoke;
 import elements.particular.particles.individual.smoke.Smoke;
-import elements.particular.particles.individual.trhuster.ThrusterParticle;
+import elements.particular.particles.individual.thruster.ThrusterParticle;
 import elements.particular.particles.individual.weapon.BlueSweepParticle;
 import elements.particular.particles.individual.weapon.FireballParticle;
 import elements.particular.particles.individual.weapon.PinkParticle;

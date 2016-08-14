@@ -41,7 +41,7 @@ public abstract class Weapon extends Element implements Poolable {
 				pWeapon.free();
 			}
 			// collision
-//			batch.draw(AssetMan.red, pWeapon.getRectangleCollision().x, pWeapon.getRectangleCollision().y, pWeapon.getRectangleCollision().width, pWeapon.getRectangleCollision().height);
+//			batch.draw(AssetMan.red, pWeapon.getRectangleCollision().x, pWeapon.getRectangleCollision().y, pWeapon.getRectangleCollision().height, pWeapon.getRectangleCollision().height);
 		}
 		for (final PlayerWeapon pWeapon : ADDS) {
 			pWeapon.displayOnScreen(batch);

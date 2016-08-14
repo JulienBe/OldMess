@@ -126,21 +126,21 @@ public class Physic {
 	
 	private static boolean collision = false;
 	
-//	public static boolean isAddTouched(final Vector2 pos, final float width, final float height) {
+//	public static boolean isAddTouched(final Vector2 pos, final float height, final float height) {
 //		collision = false;
-//		if (Player.leftDrone && Physic.isPointInRect(Player.centerLeft1AddX, Player.centerAdd1Y, pos, width, height)) {
+//		if (Player.leftDrone && Physic.isPointInRect(Player.centerLeft1AddX, Player.centerAdd1Y, pos, height, height)) {
 //			Player.removeLeftAdd1();
 //			collision = true;
 //		}
-//		if (Player.rightDrone && Physic.isPointInRect(Player.centerRight1AddX, Player.centerAdd1Y, pos, width, height))	{
+//		if (Player.rightDrone && Physic.isPointInRect(Player.centerRight1AddX, Player.centerAdd1Y, pos, height, height))	{
 //			Player.enleverAddDroite1();
 //			collision = true;
 //		}
-//		if (Player.leftDrone2 && Physic.isPointInRect(Player.centerLeft2AddX, Player.centerAdd2Y, pos, width, height)) {
+//		if (Player.leftDrone2 && Physic.isPointInRect(Player.centerLeft2AddX, Player.centerAdd2Y, pos, height, height)) {
 //			Player.removeLeftAdd2();
 //			collision = true;
 //		}
-//		if (Player.rightDrone2 && Physic.isPointInRect(Player.centerRight2AddX, Player.centerAdd2Y, pos, width, height)) {
+//		if (Player.rightDrone2 && Physic.isPointInRect(Player.centerRight2AddX, Player.centerAdd2Y, pos, height, height)) {
 //			Player.enleverAddDroite2();
 //			collision = true;
 //		}

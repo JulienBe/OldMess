@@ -34,10 +34,7 @@ public class Smoke implements Poolable{
 		}
 		batch.setColor(CSG.gm.palette().white);
 	}
-	
-	@Override
-	public void reset() {}
-	
+
 	public Smoke init(float x, float y, boolean rnd, float[] colors) {
 		if (rnd)
 			this.x = (x - PrecalculatedParticles.INITIAL_HALF_WIDTH) + ((CSG.R.nextFloat() - .5f) * PrecalculatedParticles.INITIAL_HALF_WIDTH);
@@ -48,10 +45,13 @@ public class Smoke implements Poolable{
 		this.colors = colors;
 		return this;
 	}
-	
+
 	public static void clear(Array<Smoke> smoke) {
 		POOL.freeAll(smoke);
 		smoke.clear();
 	}
+
+	@Override
+	public void reset() {}
 
 }

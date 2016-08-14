@@ -1,7 +1,6 @@
 package elements.generic.enemies;
 
 import com.badlogic.gdx.utils.Pool;
-import elements.generic.enemies.Enemy;
 import elements.generic.enemies.individual.lvl1.*;
 import elements.generic.enemies.individual.lvl3.*;
 import elements.generic.enemies.individual.lvl4.*;

@@ -85,7 +85,7 @@ public class XP extends Bonus implements Poolable {
 				case HOMMING:
 					xp.angle += xp.valeur;
 //					Physic.mvtToPlayer(xp.direction, xp.pos, Stats.U20 + xp.valeur * 2, WIDTH, HALF);
-//					Physic.mvtToPlayer(xp.direction, xp.pos, Stats.U20 + xp.valeur * 2, (int)xp.width, (int)xp.width / 2);
+//					Physic.mvtToPlayer(xp.direction, xp.pos, Stats.U20 + xp.valeur * 2, (int)xp.height, (int)xp.height / 2);
 					Physic.mvtToPlayer(xp.direction, xp.pos, Stats.U20 + xp.valeur * 2, WIDTH, HALF, 1);
 					analyzeDistance(xp, INFLATE, Stats.U10);
 					drawStandard(batch, xp, xp.angle);
@@ -96,7 +96,7 @@ public class XP extends Bonus implements Poolable {
 					tmpFloat = xp.inflate / 2;
 					drawMultipleTimes(batch, xp, xp.angle);
 					if (xp.inflate >= WIDTH_INF) {
-//					if (xp.inflate >= xp.width * 2) {
+//					if (xp.inflate >= xp.height * 2) {
 						xp.color = CSG.gm.palette().setAlpha(xp.color, 0.3f);
 						xp.state = SHOOTING_STAR;
 						xp.direction.x = CSG.halfWidth - xp.pos.x;
@@ -148,7 +148,7 @@ public class XP extends Bonus implements Poolable {
 	private static void drawAndMove(SpriteBatch batch, XP xp, float angle) {
 		batch.setColor(xp.color);
 		batch.draw(AssetMan.xp, xp.pos.x, xp.pos.y, HALF_INF_WIDTH, HALF_INF_WIDTH, WIDTH_INF, WIDTH_INF, 1, 1, angle);
-//		batch.draw(AssetMan.xp, xp.pos.x, xp.pos.y, xp.width, xp.height);
+//		batch.draw(AssetMan.xp, xp.pos.x, xp.pos.y, xp.height, xp.height);
 //		batch.draw(AssetMan.xp, xp.pos.x, xp.pos.y, WIDTH_INF, WIDTH_INF);
 		move(xp);
 	}
@@ -156,7 +156,7 @@ public class XP extends Bonus implements Poolable {
 	private static void drawMultipleTimes(SpriteBatch batch, XP xp, float angle) {
 		batch.setColor(xp.color);
 //		batch.draw(AssetMan.xp, xp.pos.x, xp.pos.y, WIDTH, WIDTH);
-//		batch.draw(AssetMan.xp, xp.pos.x, xp.pos.y, xp.width, xp.height);
+//		batch.draw(AssetMan.xp, xp.pos.x, xp.pos.y, xp.height, xp.height);
 		batch.draw(AssetMan.xp, xp.pos.x - tmpFloat, xp.pos.y - tmpFloat, HALF + tmpFloat, HALF + tmpFloat, WIDTH + xp.inflate, WIDTH + xp.inflate, 1, 1, angle);
 //		batch.draw(AssetMan.xp, xp.pos.x - tmpFloat, xp.pos.y - tmpFloat, HALF + tmpFloat, HALF + tmpFloat, WIDTH + xp.inflate, WIDTH + xp.inflate, 1, 1, -angle);
 	}
@@ -164,7 +164,7 @@ public class XP extends Bonus implements Poolable {
 	private static void drawStandard(SpriteBatch batch, XP xp, float angle) {
 		batch.setColor(xp.color);
 		batch.draw(AssetMan.xp, xp.pos.x, xp.pos.y, HALF, HALF, WIDTH, WIDTH, 1, 1, angle);
-//		batch.draw(AssetMan.xp, xp.pos.x, xp.pos.y, xp.width, xp.height);
+//		batch.draw(AssetMan.xp, xp.pos.x, xp.pos.y, xp.height, xp.height);
 //		batch.draw(AssetMan.xp, xp.pos.x, xp.pos.y, WIDTH, WIDTH);
 	}
 
@@ -189,7 +189,7 @@ public class XP extends Bonus implements Poolable {
 		return AssetMan.xp;
 	}
 
-//	public void init(float x, float y, int valeur, float width, float height) {
+//	public void init(float x, float y, int valeur, float height, float height) {
 //		this.pos.x = x;
 //		this.pos.y = y;
 //		this.valeur = 10;

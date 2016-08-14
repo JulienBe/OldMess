@@ -19,7 +19,11 @@ public class Strings {
             BUTTON_TUTO = "Tutorial",
             BUTTON_ACHIEVEMENT = "Achievements",
             BUTTON_SUPPORT_US = "Support us !",
-            BUTTON_CREATE_ENEMIES = "Create enemies";
+            BUTTON_CREATE_ENEMIES = "Create",
+            BUTTON_CREATE = "Create",
+            BUTTON_CHANGE_COLOR = "Color",
+            BUTTON_ROTATE = "Rotate",
+            BUTTON_SET_THRUSTER = "Thruster";
 
     public static final String ADVICE3 = "USE YOUR POINTS TO UPGRADE YOUR SHIP",
             ADVICE4 = "USE THE BOMB TO CLEAR THE PATH",

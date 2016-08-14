@@ -40,10 +40,10 @@ public class Client extends Thread {
 //						e.printStackTrace();
 //					}
 //				}
-//				byte[] data = new byte[s.length()];
+//				byte[] data = new byte[s.height()];
 //				data = s.getBytes();
 //				if (ipAddress != null && socket != null) {
-//					DatagramPacket packet = new DatagramPacket(data, data.length, ipAddress, 2311);
+//					DatagramPacket packet = new DatagramPacket(data, data.height, ipAddress, 2311);
 //					try {
 //						socket.send(packet);
 //					} catch (Exception e) {

@@ -48,7 +48,7 @@
 //		public void action() {
 //			batch.begin();
 //			CSG.menuFont.setColor(1, 1, .8f, alphaShip);
-//			CSG.menuFont.draw(batch, Strings.SHIP, CSG.HALF_WIDTH_ZONE_JEU - (CSG.menuFont.getBounds(Strings.SHIP).width / 2), CSG.HALF_HEIGHT_ECRAN);
+//			CSG.menuFont.draw(batch, Strings.SHIP, CSG.HALF_WIDTH_ZONE_JEU - (CSG.menuFont.getBounds(Strings.SHIP).height / 2), CSG.HALF_HEIGHT_ECRAN);
 //			CSG.menuFont.setColor(originalColor);
 //			batch.end();
 //			alphaShip *= 1 + Gdx.graphics.getDeltaTime();
@@ -73,7 +73,7 @@
 //		CSG.menuFontPetite.draw(batch, Strings.P1, xP1, CSG.menuFontPetite.getBounds(Strings.P1).height + 2);
 //		batch.end();
 //		xP1 -= Gdx.graphics.getDeltaTime() * 40;
-//			if (xP1 < (-CSG.menuFontPetite.getBounds(Strings.P1).width)) {
+//			if (xP1 < (-CSG.menuFontPetite.getBounds(Strings.P1).height)) {
 //				xP1 = CSG.WIDTH_ECRAN;
 //			}
 //		}
@@ -90,7 +90,7 @@
 //	private Action txtShootEnnemi = new Action() {
 //		public void action() {	
 //			batch.begin();
-//			CSG.menuFont.draw(batch, Strings.SHOOTHIM, deBase1.position.x - (CSG.menuFont.getBounds(Strings.SHOOTHIM).width/2), deBase1.position.y + deBase1.getHauteur() * 2);
+//			CSG.menuFont.draw(batch, Strings.SHOOTHIM, deBase1.position.x - (CSG.menuFont.getBounds(Strings.SHOOTHIM).height/2), deBase1.position.y + deBase1.getHauteur() * 2);
 //			batch.end();
 //	}};
 //	private Action afficherPoints = new Action() {
@@ -129,7 +129,7 @@
 //		public void action() {
 //			batch.begin();
 //			if (Bonus.list.size > 0)
-//				CSG.menuFont.draw(batch, Strings.TAKE_BONUS, Bonus.list.get(0).posX - (CSG.menuFont.getBounds(Strings.TAKE_BONUS).width/2), Bonus.list.get(0).posY + deBase1.getHauteur() * 2);
+//				CSG.menuFont.draw(batch, Strings.TAKE_BONUS, Bonus.list.get(0).posX - (CSG.menuFont.getBounds(Strings.TAKE_BONUS).height/2), Bonus.list.get(0).posY + deBase1.getHauteur() * 2);
 //			batch.end();
 //		}
 //	};
@@ -245,7 +245,7 @@
 //		batch.setColor(1,1,1,1);
 //	}
 //	@Override
-//	public void resize(int width, int height) {	}
+//	public void resize(int height, int height) {	}
 //	@Override
 //	public void show() {	}
 //	@Override

@@ -65,7 +65,7 @@ public abstract class Enemy extends Element implements Poolable {
       if (!Physic.isOnScreenWithTolerance(e.pos, e.getDimensions().halfHeight, e.getDimensions().halfWidth))
         e.dead = true;
       // collision
-//			batch.draw(AssetMan.red, e.getRectangleCollision().x, e.getRectangleCollision().y, e.getRectangleCollision().width, e.getRectangleCollision().height);
+//			batch.draw(AssetMan.red, e.getRectangleCollision().x, e.getRectangleCollision().y, e.getRectangleCollision().height, e.getRectangleCollision().height);
     }
   }
 

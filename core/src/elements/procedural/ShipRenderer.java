@@ -3,17 +3,18 @@ package elements.procedural;
 import assets.AssetMan;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import jeu.CSG;
-import jeu.MyColors;
+import jeu.colors.Bunch;
+import jeu.colors.MyColors;
 
 /**
  * Created by julein on 12/08/16.
  */
 public class ShipRenderer {
 
+    private MyColors secondaryColor = MyColors.randomColor();
     private final Color border = new Color(0.05f, 0.05f, 0.05f, 1),
             empty = new Color(1, 1, 1, 0),
-            secondary = MyColors.randomColor().color,
+            secondary = secondaryColor.color,
             filled = new Color(0.164f, 0.164f, 0.164f, 1);
 
     public void render(Grid grid, SpriteBatch batch, int size) {
@@ -31,6 +32,8 @@ public class ShipRenderer {
             }
         }
     }
+
+    public Bunch thrusterColor() { return secondaryColor.bunch; }
 
     private Color getSecondaryColor(float depth) {
         return ColorUtils.lighter(secondary, depth * 0.1f);
