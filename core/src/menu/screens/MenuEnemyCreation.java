@@ -67,6 +67,7 @@ public class MenuEnemyCreation extends BaseStage {
                     case Input.Keys.Z: yStartThruster++; break;
                     case Input.Keys.S: yStartThruster--; break;
                     case Input.Keys.SPACE: createThruster(); break;
+                    case Input.Keys.R: editableShip.resetThruster(); break;
                 }
                 return super.keyDown(event, keycode);
             }

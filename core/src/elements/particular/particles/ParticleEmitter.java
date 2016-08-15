@@ -36,6 +36,6 @@ public class ParticleEmitter {
     }
 
     public Vector2 dir() {
-        return PLACEHOLDER2.set(line.y, line.x).nor();
+        return PLACEHOLDER2.set(-line.y, line.x).nor();
     }
 }

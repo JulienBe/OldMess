@@ -10,14 +10,13 @@ import com.badlogic.gdx.utils.Array;
 import elements.particular.particles.ParticleEmitter;
 import elements.particular.particles.individual.thruster.EnemyThruster;
 import jeu.CSG;
-import jeu.Stats;
 import jeu.TimeKeeper;
 
 /**
  * Created by julein on 12/08/16.
  */
 public class EditableShip {
-    private ParticleEmitter particleEmitter;
+    private Array<ParticleEmitter> particleEmitters = new Array<ParticleEmitter>();
     private final Grid grid;
     private ShipRenderer renderer = new ShipRenderer();
     private float rotation = 0;
@@ -73,7 +72,10 @@ public class EditableShip {
     }
 
     public void setThruster(int xStartThruster, int yStartThruster, int xEndThruster, int yEndThruster) {
-        particleEmitter = ParticleEmitter.instance(new Vector2(xStartThruster, yStartThruster), new Vector2(xEndThruster, yEndThruster));
+        particleEmitters.add(ParticleEmitter.instance(new Vector2(xStartThruster, yStartThruster), new Vector2(xEndThruster, yEndThruster)));
+    }
+    public void resetThruster() {
+        particleEmitters.clear();
     }
 
     public void draw(SpriteBatch batch, float delta, float scale) {
@@ -88,18 +90,14 @@ public class EditableShip {
             EnemyThruster.act(particles, batch);
             batch.end();
         }
-        if (particleEmitter != null) {
-            addParticle(scale);
-            addParticle(scale);
-            addParticle(scale);
-            addParticle(scale);
-        }
+        for (ParticleEmitter p : particleEmitters)
+            addParticle(scale, p);
     }
 
-    private void addParticle(float scale) {
+    private void addParticle(float scale, ParticleEmitter emitter) {
         EnemyThruster p = EnemyThruster.get();
-        Vector2 pos = particleEmitter.randomPos().scl(scale);
-        Vector2 dir = particleEmitter.dir().scl(scale * 50);
+        Vector2 pos = emitter.randomPos().scl(scale);
+        Vector2 dir = emitter.dir().scl(scale * 50);
         particles.add(p.init(x(scale / 2) + pos.x, y(scale / 2) + pos.y, dir.x, dir.y, renderer.thrusterColor()));
     }
 
