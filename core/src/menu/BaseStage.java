@@ -19,7 +19,8 @@ public class BaseStage implements Screen {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(stage);
+        inputMultiplexer.addProcessor(stage);
+        Gdx.input.setInputProcessor(inputMultiplexer);
     }
 
     @Override

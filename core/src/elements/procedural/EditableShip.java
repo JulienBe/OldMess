@@ -19,7 +19,7 @@ public class EditableShip {
     private Array<ParticleEmitter> particleEmitters = new Array<ParticleEmitter>();
     private final Grid grid;
     private ShipRenderer renderer = new ShipRenderer();
-    private float rotation = 0;
+    private float rotation = 270;
     private TextureRegion textureRegion;
     private Array<EnemyThruster> particles = new Array<EnemyThruster>();
 

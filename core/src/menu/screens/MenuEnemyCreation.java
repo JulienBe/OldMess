@@ -35,7 +35,7 @@ public class MenuEnemyCreation extends BaseStage {
             rorateLabel = new Label(Strings.BUTTON_ROTATE, Stats.MENU_STYLE);
     private MyTextButton createEnemy, changeColor, rotate;
     private int xStartThruster = 0, yStartThruster = 0, xEndThruster = 0, yEndThruster = 0;
-    private int minSteps = 10, maxSteps = 30, minSubSteps = 10, maxSubsteps = 40;
+    private int minSteps = 10, maxSteps = 30, minSubSteps = 10, maxSubSteps = 40;
     private InputProcessor menuInputs = new InputAdapter() {
         public boolean keyDown(int keycode) {
             switch (keycode) {
@@ -60,8 +60,12 @@ public class MenuEnemyCreation extends BaseStage {
             switch (keycode) {
                 case Input.Keys.NUMPAD_7:           maxSteps++;                             break;
                 case Input.Keys.NUMPAD_4:           maxSteps--;                             break;
-                case Input.Keys.NUMPAD_9:           maxSubsteps++;                          break;
-                case Input.Keys.NUMPAD_6:           minSubSteps--;                          break;
+                case Input.Keys.NUMPAD_1:           minSteps++;                             break;
+                case Input.Keys.NUMPAD_0:           minSteps--;                             break;
+                case Input.Keys.NUMPAD_9:           maxSubSteps++;                          break;
+                case Input.Keys.NUMPAD_6:           maxSubSteps--;                          break;
+                case Input.Keys.NUMPAD_3:           minSubSteps++;                          break;
+                case Input.Keys.NUMPAD_2:           minSubSteps--;                          break;
             }
             return super.keyDown(keycode);
         }
@@ -139,7 +143,7 @@ public class MenuEnemyCreation extends BaseStage {
     }
 
     private void createNewEnemy(int seed) {
-        ShipFactory factory = new ShipFactory(Parameters.MINE, new Steps(minSteps, maxSteps, minSubSteps, maxSubsteps), new Rng(seed));
+        ShipFactory factory = new ShipFactory(Parameters.MINE, new Steps(minSteps, maxSteps, minSubSteps, maxSubSteps), new Rng(seed));
         editableShip = new EditableShip(factory.create());
         shipCreated = true;
     }
@@ -165,10 +169,10 @@ public class MenuEnemyCreation extends BaseStage {
                 CSG.batch.setColor(Color.WHITE);
                 break;
             case PARAMETERS:
-                CSG.menuFont.draw(CSG.batch, "min steps : " + minSteps, 0, 0);
-                CSG.menuFont.draw(CSG.batch, "max steps : " + maxSteps, 0, 20);
-                CSG.menuFont.draw(CSG.batch, "min substeps : " + minSubSteps, 0, 40);
-                CSG.menuFont.draw(CSG.batch, "max substeps : " + maxSubsteps, 0, 60);
+                CSG.menuFont.draw(CSG.batch, "min steps : " + minSteps, 0, 20);
+                CSG.menuFont.draw(CSG.batch, "max steps : " + maxSteps, 0, 40);
+                CSG.menuFont.draw(CSG.batch, "min substeps : " + minSubSteps, 0, 60);
+                CSG.menuFont.draw(CSG.batch, "max substeps : " + maxSubSteps, 0, 80);
                 break;
         }
         CSG.batch.end();
