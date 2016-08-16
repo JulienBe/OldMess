@@ -20,14 +20,13 @@ import menu.tuto.OnClick;
 public class MenuEnemyCreation extends BaseStage {
 
     private enum Mode {
-        NORMAL, THRUSTER, PARAMETERS
+        NORMAL, THRUSTER, MVT, PARAMETERS
     }
-
     private static final int Y_CREATE = (int) (CSG.height * 1.55f);
     private static final float SCALE = Stats.PIXEL, HALF_SCALE = SCALE / 2;
     private static int shipNumber = 0;
     private EditableShip editableShip;
-    private boolean shipCreated = false;
+    private boolean createNewShip = false;
     private Mode mode = Mode.NORMAL;
     private final Game game;
     private Label createEnemyLabel = new Label(Strings.BUTTON_CREATE_ENEMIES, Stats.MENU_STYLE),
@@ -42,6 +41,7 @@ public class MenuEnemyCreation extends BaseStage {
                 case Input.Keys.F1:                 modeChange(Mode.NORMAL);                break;
                 case Input.Keys.F2:                 modeChange(Mode.THRUSTER);              break;
                 case Input.Keys.F3:                 modeChange(Mode.PARAMETERS);            break;
+                case Input.Keys.F4:                 modeChange(Mode.MVT);                   break;
             }
             return super.keyDown(keycode);
         }
@@ -88,6 +88,19 @@ public class MenuEnemyCreation extends BaseStage {
             return super.keyDown(keycode);
         }
     };
+    private InputProcessor mvtProcessor = new InputAdapter() {
+        @Override
+        public boolean keyDown(int keycode) {
+            switch (keycode) {
+                case Input.Keys.A:      addMvt(new Basic());    break;
+            }
+            return super.keyDown(keycode);
+        }
+    };
+
+    private void addMvt(EnemyMvt mvt) {
+        editableShip.addMvt(mvt);
+    }
 
     public MenuEnemyCreation(Game game) {
         this.game = game;
@@ -96,17 +109,17 @@ public class MenuEnemyCreation extends BaseStage {
 
     private void setUpScreenElements() {
         createEnemy = new MyTextButton(0, Y_CREATE, new LabelAction(createEnemyLabel, new OnClick() {
-            public void onClick() {                createNewEnemy(++shipNumber);            }
+            public void onClick() {                shipNumber++; createNewShip = true;            }
         }));
-        changeColor = new MyTextButton((int) createEnemy.getRight(), Y_CREATE, new LabelAction(changeColorLabel, new OnClick() {
-            public void onClick() {                changeColor();            }
-        }));
-        rotate = new MyTextButton((int) (changeColor.getRight()), Y_CREATE, new LabelAction(rorateLabel, new OnClick() {
-            public void onClick() {                rotate();            }
-        }));
+//        changeColor = new MyTextButton((int) createEnemy.getRight(), Y_CREATE, new LabelAction(changeColorLabel, new OnClick() {
+//            public void onClick() {                changeColor();            }
+//        }));
+//        rotate = new MyTextButton((int) (changeColor.getRight()), Y_CREATE, new LabelAction(rorateLabel, new OnClick() {
+//            public void onClick() {                rotate();            }
+//        }));
         stage.addActor(createEnemy);
-        stage.addActor(rotate);
-        stage.addActor(changeColor);
+//        stage.addActor(rotate);
+//        stage.addActor(changeColor);
         addInputProcessor(menuInputs, generalInputs);
     }
 
@@ -138,14 +151,12 @@ public class MenuEnemyCreation extends BaseStage {
             editableShip.rotate(-90);
     }
 
-    private void changeColor() {
-        createNewEnemy(shipNumber);
-    }
-
     private void createNewEnemy(int seed) {
+        if (editableShip != null)
+            editableShip.dispose();
         ShipFactory factory = new ShipFactory(Parameters.MINE, new Steps(minSteps, maxSteps, minSubSteps, maxSubSteps), new Rng(seed));
         editableShip = new EditableShip(factory.create());
-        shipCreated = true;
+        createNewShip = false;
     }
 
     @Override
@@ -153,12 +164,11 @@ public class MenuEnemyCreation extends BaseStage {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         super.render(delta);
-        if (shipCreated) {
-            editableShip.buildTexture();
-            shipCreated = false;
+        if (createNewShip) {
+            createNewEnemy(shipNumber);
         }
         if (editableShip != null)
-            editableShip.draw(CSG.batch, delta, SCALE);
+            editableShip.draw(CSG.batch, delta);
         CSG.batch.begin();
         switch (mode) {
             case THRUSTER:

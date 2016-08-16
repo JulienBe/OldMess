@@ -1,5 +1,7 @@
 package elements.procedural;
 
+import com.badlogic.gdx.utils.Array;
+
 import java.awt.*;
 
 /**
@@ -10,11 +12,11 @@ public class Grid {
     private int previousNeighbour = 0, keptLine = 0;
     Pixel[][] pixels;
 
-    public Grid(int rows, int cols) {
+    Grid(int rows, int cols) {
         pixels = initEmptyGrid(rows, cols);
     }
 
-    public Pixel[][] initEmptyGrid(int rows, int cols) {
+    private Pixel[][] initEmptyGrid(int rows, int cols) {
         Pixel[][] grid = new Pixel[rows][cols];
         for (int x = 0; x < rows; x++)
             for (int y = 0; y < cols; y++)
@@ -25,14 +27,14 @@ public class Grid {
     public int height() {
         return pixels.length;
     }
-    public int rowWidth(int index) {
+    int rowWidth(int index) {
         return pixels[index].length;
     }
     public Pixel get(int x, int y) {
         return pixels[x][y];
     }
 
-    public void addExtras(Steps stepsConst, Parameters param, Rng rng) {
+    void addExtras(Steps stepsConst, Parameters param, Rng rng) {
         int steps = rng.intBetween(stepsConst.minSteps - 10, stepsConst.maxSteps - 10);
         int subSteps = rng.intBetween(stepsConst.minSubStep - 10, stepsConst.maxSubSteps - 10);
 
@@ -44,7 +46,7 @@ public class Grid {
     }
 
     // TODO remove awt point
-    public Point getRandomFilledPoint(Rng rng) {
+    private Point getRandomFilledPoint(Rng rng) {
         Point point = null;
         while (point == null) {
             int x = rng.intBetween(1, height() - 1);
@@ -59,7 +61,7 @@ public class Grid {
         return point;
     }
 
-    public void removeEmptyCells() {
+    void removeEmptyCells() {
         Pixel[][] flooredGrid;
         int lastFilledRow = 0;
         int lastFilledCol = 0;
@@ -96,7 +98,7 @@ public class Grid {
         pixels = flooredGrid;
     }
 
-    public void mirrorCopyGridHorizontally() {
+    void mirrorCopyGridHorizontally() {
         int rows = height();
         int cols = rowWidth(0) * 2;
 
@@ -111,7 +113,7 @@ public class Grid {
         pixels = fullGrid;
     }
 
-    public void addBorders() {
+    void addBorders() {
         extendGrid(2);
 
         // omg could this be less readable ?
@@ -135,7 +137,7 @@ public class Grid {
         }
     }
 
-    public void extendGrid(int extendAmount) {
+    private void extendGrid(int extendAmount) {
         Pixel[][] extendedGrid = initEmptyGrid(height() + extendAmount, rowWidth(0) + extendAmount);
         for (int x = 0; x < height(); x++)
             for (int y = 0; y < rowWidth(0); y++)
@@ -147,7 +149,21 @@ public class Grid {
         pixels[x][y].value = state;
     }
 
-    public void fillEmptySurroundedPixelsInGrid() {
+    void correctHeight() {
+        Array<Integer> toBeDiscarded = new Array<Integer>();
+        for (int i = 0; i < width(); i++)
+            if (colHasOnly(Pixel.State.EMPTY, i))
+                toBeDiscarded.add(i);
+    }
+
+    private boolean colHasOnly(Pixel.State state, int index) {
+        for (int i = 0; i < height(); i++)
+            if (pixels[index][height()].value != state)
+                return false;
+        return true;
+    }
+
+    void fillEmptySurroundedPixelsInGrid() {
         for (int x = 0; x < height(); x++) {
             for (int y = 0; y < rowWidth(0); y++) {
                 if (get(x, y).value == Pixel.State.EMPTY) {
@@ -177,7 +193,7 @@ public class Grid {
         }
     }
 
-    public void setPixelDepth() {
+    void setPixelDepth() {
         for (int x = 0; x < height(); x++) {
             for (int y = 0; y < rowWidth(0); y++) {
                 if (get(x, y).value != Pixel.State.EMPTY && get(x, y).value != Pixel.State.BORDER) {
@@ -214,7 +230,7 @@ public class Grid {
     }
 
     // TODO : inverted here too
-    public void addStuctureToFlatAreas(Parameters param, Rng rnd) {
+    void addStuctureToFlatAreas(Parameters param, Rng rnd) {
         for (int x = 0; x < height(); x++) {
             int streakLength = rnd.gaussianFlooredScaler(param.streakMul);
             int currentStreak = 0;

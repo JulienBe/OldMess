@@ -1,6 +1,7 @@
 package elements.procedural;
 
 import assets.AssetMan;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import jeu.colors.Bunch;
@@ -33,8 +34,6 @@ public class ShipRenderer {
         }
     }
 
-    public Bunch thrusterColor() { return secondaryColor.bunch; }
-
     private Color getSecondaryColor(float depth) {
         return ColorUtils.lighter(secondary, depth * 0.1f);
     }
@@ -46,4 +45,8 @@ public class ShipRenderer {
     public Color getFilledColor(float depth) {
         return ColorUtils.lighter(filled, depth * 0.05f > 3 ? 3 : depth * 0.05f);
     }
+
+    public MyColors colors() {
+    return secondaryColor;
+  }
 }
